@@ -3,9 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>porfolios</title>
+    <title>Redirect Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #97c7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .center-box {
+            width: 300px;
+            padding: 20px;
+            background: #003366;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .center-box img {
+            width: 200px;
+            height: auto;
+            font-weight: bold;
+        }
+
+        .center-box h1 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .center-box p {
+            font-size: 14px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .center-box input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .center-box button {
+            width: 100%;
+            padding: 8px;
+            background: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .center-box button:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    hello
+    <div class="center-box">
+        <img src="fewinfos_logo.png" alt="">
+        <h1>Welcome to Fewinfos Portfolio Page</h1>
+        <p>Enter the you given for order</p>
+        <form onsubmit="redirect(event)">
+            <input type="text" id="name" placeholder="Name" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function redirect(event) {
+            event.preventDefault(); // Prevent form submission reload
+            let name = document.getElementById('name').value;
+            l = ["ajithkumarvelusamy", "navi"]
+            name = name.toLowerCase();
+                if(l.includes(name)){
+                    window.location.href = "https://portfolio.fewinfos.com/" + name;
+                }else{
+                    alert("Invalid Name");
+                }
+            }
+    </script>
 </body>
 </html>
