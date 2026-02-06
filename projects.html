@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Naveenraj</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-section {
+            min-height: 100vh;
+            padding: 120px 50px 50px;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 48px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: var(--mint);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease both;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.3s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(3) { animation-delay: 0.5s; }
+        .project-card:nth-child(4) { animation-delay: 0.6s; }
+        .project-card:nth-child(5) { animation-delay: 0.7s; }
+        .project-card:nth-child(6) { animation-delay: 0.8s; }
+
+        .project-card:hover {
+            border-color: var(--mint);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(100, 255, 218, 0.03) 0px,
+                transparent 1px,
+                transparent 2px,
+                rgba(100, 255, 218, 0.03) 3px
+            );
+        }
+
+        .project-icon {
+            font-size: 48px;
+            color: var(--mint);
+            z-index: 1;
+        }
+
+        .project-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .project-type {
+            font-size: 11px;
+            color: var(--mint);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 8px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 3px;
+            border: 1px solid var(--mint);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .tech-badge {
+            color: var(--mint);
+            font-size: 11px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            padding: 4px 8px;
+            background: rgba(100, 255, 218, 0.05);
+            border-radius: 3px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 4px;
+        }
+
+        .project-link:hover {
+            color: var(--mint);
+            border-color: var(--mint);
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        .project-link::before {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover::before {
+            transform: translateX(3px);
+        }
+
+        .featured-banner {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--mint);
+            color: #000;
+            padding: 5px 40px;
+            font-size: 11px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(100, 255, 218, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .projects-section {
+                padding: 100px 30px 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Naveenraj</div>
+        <ul class="nav-links">
+            <li><a href="index.html">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="work.html">work</a></li>
+            <li><a href="projects.html">projects</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="projects-container">
+            <h1 class="section-title">Projects</h1>
+            <p class="section-subtitle">Things I've built and created</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <span class="featured-banner">FEATURED</span>
+                        <div class="project-icon">💻</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">E-Commerce Platform</h3>
+                            <span class="project-type">Web App</span>
+                        </div>
+                        <p class="project-description">
+                            A full-featured e-commerce platform with user authentication, product management, 
+                            shopping cart, payment integration, and admin dashboard. Built with modern technologies 
+                            for optimal performance and scalability.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">Stripe</span>
+                            <span class="tech-badge">Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">📱</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Task Management App</h3>
+                            <span class="project-type">Mobile</span>
+                        </div>
+                        <p class="project-description">
+                            A collaborative task management application with real-time updates, 
+                            team workspaces, drag-and-drop functionality, and deadline tracking. 
+                            Designed for productivity and seamless team collaboration.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">Firebase</span>
+                            <span class="tech-badge">Socket.io</span>
+                            <span class="tech-badge">Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <span class="featured-banner">FEATURED</span>
+                        <div class="project-icon">🎨</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Portfolio Builder</h3>
+                            <span class="project-type">Web App</span>
+                        </div>
+                        <p class="project-description">
+                            An intuitive drag-and-drop portfolio builder that allows users to create 
+                            beautiful portfolio websites without coding. Features multiple templates, 
+                            custom domains, and analytics integration.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Next.js</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">🔐</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Authentication API</h3>
+                            <span class="project-type">Backend</span>
+                        </div>
+                        <p class="project-description">
+                            A robust authentication and authorization API with JWT tokens, OAuth integration, 
+                            two-factor authentication, and role-based access control. 
+                            RESTful design with comprehensive documentation.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">Express</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">JWT</span>
+                            <span class="tech-badge">OAuth</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Documentation</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">📊</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Analytics Dashboard</h3>
+                            <span class="project-type">Web App</span>
+                        </div>
+                        <p class="project-description">
+                            A real-time analytics dashboard with interactive charts, data visualization, 
+                            and custom reporting. Features export functionality, scheduled reports, 
+                            and multi-user support with role permissions.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">D3.js</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Flask</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">🤖</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">AI Chatbot</h3>
+                            <span class="project-type">AI/ML</span>
+                        </div>
+                        <p class="project-description">
+                            An intelligent chatbot powered by natural language processing that provides 
+                            customer support, answers queries, and learns from interactions. 
+                            Integrates with popular messaging platforms.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">TensorFlow</span>
+                            <span class="tech-badge">NLP</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Custom cursor effect
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor-dot';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll('a, button');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

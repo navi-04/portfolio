@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work | Naveenraj</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .work-section {
+            min-height: 100vh;
+            padding: 120px 50px 50px;
+        }
+
+        .work-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 48px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: var(--mint);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .work-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .work-item {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .work-item:nth-child(1) { animation-delay: 0.3s; }
+        .work-item:nth-child(2) { animation-delay: 0.4s; }
+        .work-item:nth-child(3) { animation-delay: 0.5s; }
+        .work-item:nth-child(4) { animation-delay: 0.6s; }
+
+        .work-item:hover {
+            border-color: var(--mint);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .work-title {
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .work-company {
+            color: var(--mint);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .work-period {
+            color: var(--text-secondary);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .work-type {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--mint);
+            font-size: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--mint);
+        }
+
+        .work-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .work-highlights {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .work-highlights li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .work-highlights li::before {
+            content: '▹';
+            color: var(--mint);
+            position: absolute;
+            left: 0;
+        }
+
+        .work-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .tech-tag {
+            color: var(--mint);
+            font-size: 12px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            padding: 4px 10px;
+            background: rgba(100, 255, 218, 0.05);
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .work-section {
+                padding: 100px 30px 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .work-header {
+                flex-direction: column;
+            }
+
+            .work-type {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Naveenraj</div>
+        <ul class="nav-links">
+            <li><a href="index.html">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="work.html">work</a></li>
+            <li><a href="projects.html">projects</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Work Section -->
+    <section class="work-section">
+        <div class="work-container">
+            <h1 class="section-title">Work Experience</h1>
+            <p class="section-subtitle">Places I've worked and things I've built</p>
+            
+            <div class="work-grid">
+                <div class="work-item">
+                    <div class="work-header">
+                        <div>
+                            <h3 class="work-title">Full Stack Developer</h3>
+                            <div class="work-company">Tech Solutions Inc.</div>
+                            <div class="work-period">Jan 2023 - Present</div>
+                        </div>
+                        <span class="work-type">Full-time</span>
+                    </div>
+                    <p class="work-description">
+                        Led development of scalable web applications and collaborated with cross-functional 
+                        teams to deliver high-quality software solutions.
+                    </p>
+                    <ul class="work-highlights">
+                        <li>Developed and maintained multiple client-facing web applications using React and Node.js</li>
+                        <li>Improved application performance by 40% through code optimization and caching strategies</li>
+                        <li>Mentored junior developers and conducted code reviews</li>
+                        <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
+                    </ul>
+                    <div class="work-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-header">
+                        <div>
+                            <h3 class="work-title">Frontend Developer</h3>
+                            <div class="work-company">Creative Agency</div>
+                            <div class="work-period">Jun 2022 - Dec 2022</div>
+                        </div>
+                        <span class="work-type">Contract</span>
+                    </div>
+                    <p class="work-description">
+                        Built responsive and interactive user interfaces for various client projects, 
+                        focusing on user experience and accessibility.
+                    </p>
+                    <ul class="work-highlights">
+                        <li>Created pixel-perfect responsive designs for 10+ client websites</li>
+                        <li>Implemented modern UI/UX best practices and accessibility standards (WCAG 2.1)</li>
+                        <li>Collaborated with designers using Figma for seamless design-to-code workflow</li>
+                        <li>Reduced page load times by 50% through performance optimization</li>
+                    </ul>
+                    <div class="work-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Figma</span>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-header">
+                        <div>
+                            <h3 class="work-title">Software Developer Intern</h3>
+                            <div class="work-company">StartUp Co.</div>
+                            <div class="work-period">Jan 2022 - May 2022</div>
+                        </div>
+                        <span class="work-type">Internship</span>
+                    </div>
+                    <p class="work-description">
+                        Contributed to the development of a real-time collaboration platform, 
+                        gaining hands-on experience with modern web technologies.
+                    </p>
+                    <ul class="work-highlights">
+                        <li>Developed features for real-time collaborative editing using WebSockets</li>
+                        <li>Fixed 50+ bugs and implemented unit tests achieving 85% code coverage</li>
+                        <li>Participated in agile ceremonies and sprint planning</li>
+                        <li>Documented APIs and created technical documentation</li>
+                    </ul>
+                    <div class="work-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Socket.io</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Jest</span>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-header">
+                        <div>
+                            <h3 class="work-title">Freelance Developer</h3>
+                            <div class="work-company">Self-Employed</div>
+                            <div class="work-period">2021 - 2022</div>
+                        </div>
+                        <span class="work-type">Freelance</span>
+                    </div>
+                    <p class="work-description">
+                        Provided web development services to small businesses and startups, 
+                        delivering custom solutions tailored to client needs.
+                    </p>
+                    <ul class="work-highlights">
+                        <li>Built and deployed 15+ websites for various clients</li>
+                        <li>Managed entire project lifecycle from requirements gathering to deployment</li>
+                        <li>Provided ongoing maintenance and support</li>
+                        <li>Achieved 100% client satisfaction rate</li>
+                    </ul>
+                    <div class="work-tech">
+                        <span class="tech-tag">WordPress</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">cPanel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Custom cursor effect
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor-dot';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll('a, button');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
