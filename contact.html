@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Naveenraj</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-section {
+            min-height: 100vh;
+            padding: 120px 50px 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 48px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+            text-align: center;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: var(--mint);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-item {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            border-color: var(--mint);
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-title {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .info-title::before {
+            content: '> ';
+            color: var(--mint);
+        }
+
+        .info-detail {
+            color: var(--mint);
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .info-detail:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(100, 255, 218, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 8px;
+            color: var(--mint);
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: var(--mint);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            padding: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .form-label::before {
+            content: '$ ';
+            color: var(--mint);
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--mint);
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid var(--mint);
+            color: var(--mint);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--mint);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .form-button:hover::before {
+            left: 0;
+        }
+
+        .form-button:hover {
+            color: #000;
+        }
+
+        .terminal-decoration {
+            margin-top: 30px;
+            background: #0a0a0a;
+            border: 1px solid var(--mint);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .terminal-decoration .terminal-header {
+            background: #0d0d0d;
+            padding: 10px 12px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot:nth-child(1) { background: #ff5f56; }
+        .terminal-dot:nth-child(2) { background: #ffbd2e; }
+        .terminal-dot:nth-child(3) { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .terminal-line {
+            color: var(--mint);
+        }
+
+        .terminal-comment {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 100px 30px 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="logo" style="text-decoration: none;">Naveenraj</a>
+        <ul class="nav-links">
+            <li><a href="index.html">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="work.html">work</a></li>
+            <li><a href="projects.html">projects</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h1 class="section-title">Get In Touch</h1>
+            <p class="section-subtitle">
+                Have a project in mind or just want to chat? Feel free to reach out. 
+                I'm always open to discussing new opportunities and collaborations.
+            </p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <h3 class="info-title">Email</h3>
+                        <a href="mailto:naveenraj@example.com" class="info-detail">naveenraj@example.com</a>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📱</div>
+                        <h3 class="info-title">Phone</h3>
+                        <a href="tel:+1234567890" class="info-detail">+1 (234) 567-890</a>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <h3 class="info-title">Location</h3>
+                        <span class="info-detail">Everywhere, Internet</span>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">🌐</div>
+                        <h3 class="info-title">Social</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/navi-04" class="social-link" target="_blank" title="GitHub">
+                                <span>G</span>
+                            </a>
+                            <a href="#" class="social-link" target="_blank" title="LinkedIn">
+                                <span>in</span>
+                            </a>
+                            <a href="#" class="social-link" target="_blank" title="Twitter">
+                                <span>X</span>
+                            </a>
+                            <a href="#" class="social-link" target="_blank" title="Dev.to">
+                                <span>D</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="terminal-decoration">
+                        <div class="terminal-header">
+                            <div class="terminal-dot"></div>
+                            <div class="terminal-dot"></div>
+                            <div class="terminal-dot"></div>
+                        </div>
+                        <div class="terminal-body">
+                            <pre><code><span class="terminal-comment">// Quick response</span>
+<span class="terminal-line">const responseTime = {</span>
+<span class="terminal-line">  email: "24 hours",</span>
+<span class="terminal-line">  message: "2-3 days",</span>
+<span class="terminal-line">  availability: "open"</span>
+<span class="terminal-line">};</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="Your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-input" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" required placeholder="What's this about?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" required placeholder="Your message here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="form-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Here you would typically send the data to a server
+            console.log('Form submitted:', formData);
+            
+            // Show success message
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Custom cursor effect
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor-dot';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
