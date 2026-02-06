@@ -218,13 +218,8 @@
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="index.html" class="logo" style="text-decoration: none;">Naveenraj</a>
-        <ul class="nav-links">
-            <li><a href="index.html">home</a></li>
-            <li><a href="about.html">about</a></li>
-            <li><a href="work.html">work</a></li>
-            <li><a href="projects.html">projects</a></li>
-            <li><a href="contact.html">contact</a></li>
+        <a href="index.html" class="logo" style="text-decoration: none;" id="nav-logo">Naveenraj</a>
+        <ul class="nav-links" id="nav-links">
         </ul>
     </nav>
 
@@ -234,178 +229,70 @@
             <h1 class="section-title">Projects</h1>
             <p class="section-subtitle">Things I've built and created</p>
             
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <span class="featured-banner">FEATURED</span>
-                        <div class="project-icon">💻</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3 class="project-title">E-Commerce Platform</h3>
-                            <span class="project-type">Web App</span>
-                        </div>
-                        <p class="project-description">
-                            A full-featured e-commerce platform with user authentication, product management, 
-                            shopping cart, payment integration, and admin dashboard. Built with modern technologies 
-                            for optimal performance and scalability.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">Node.js</span>
-                            <span class="tech-badge">MongoDB</span>
-                            <span class="tech-badge">Stripe</span>
-                            <span class="tech-badge">Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">📱</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3 class="project-title">Task Management App</h3>
-                            <span class="project-type">Mobile</span>
-                        </div>
-                        <p class="project-description">
-                            A collaborative task management application with real-time updates, 
-                            team workspaces, drag-and-drop functionality, and deadline tracking. 
-                            Designed for productivity and seamless team collaboration.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">React Native</span>
-                            <span class="tech-badge">Firebase</span>
-                            <span class="tech-badge">Socket.io</span>
-                            <span class="tech-badge">Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <span class="featured-banner">FEATURED</span>
-                        <div class="project-icon">🎨</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3 class="project-title">Portfolio Builder</h3>
-                            <span class="project-type">Web App</span>
-                        </div>
-                        <p class="project-description">
-                            An intuitive drag-and-drop portfolio builder that allows users to create 
-                            beautiful portfolio websites without coding. Features multiple templates, 
-                            custom domains, and analytics integration.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Next.js</span>
-                            <span class="tech-badge">TypeScript</span>
-                            <span class="tech-badge">Tailwind CSS</span>
-                            <span class="tech-badge">PostgreSQL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">🔐</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3 class="project-title">Authentication API</h3>
-                            <span class="project-type">Backend</span>
-                        </div>
-                        <p class="project-description">
-                            A robust authentication and authorization API with JWT tokens, OAuth integration, 
-                            two-factor authentication, and role-based access control. 
-                            RESTful design with comprehensive documentation.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Node.js</span>
-                            <span class="tech-badge">Express</span>
-                            <span class="tech-badge">PostgreSQL</span>
-                            <span class="tech-badge">JWT</span>
-                            <span class="tech-badge">OAuth</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Documentation</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">📊</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3 class="project-title">Analytics Dashboard</h3>
-                            <span class="project-type">Web App</span>
-                        </div>
-                        <p class="project-description">
-                            A real-time analytics dashboard with interactive charts, data visualization, 
-                            and custom reporting. Features export functionality, scheduled reports, 
-                            and multi-user support with role permissions.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">D3.js</span>
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Flask</span>
-                            <span class="tech-badge">MySQL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">🤖</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3 class="project-title">AI Chatbot</h3>
-                            <span class="project-type">AI/ML</span>
-                        </div>
-                        <p class="project-description">
-                            An intelligent chatbot powered by natural language processing that provides 
-                            customer support, answers queries, and learns from interactions. 
-                            Integrates with popular messaging platforms.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">TensorFlow</span>
-                            <span class="tech-badge">NLP</span>
-                            <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">Docker</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="projects-grid" id="projects-grid">
             </div>
         </div>
     </section>
 
+    <script src="data.js"></script>
+    <script>
+        // Load data from data.js
+        function loadPageData() {
+            // Navigation
+            const navLogo = document.getElementById('nav-logo');
+            navLogo.textContent = portfolioData.personal.name;
+
+            const navLinks = document.getElementById('nav-links');
+            portfolioData.navigation.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.href;
+                a.textContent = item.name;
+                li.appendChild(a);
+                navLinks.appendChild(li);
+            });
+
+            // Projects
+            const projectsGrid = document.getElementById('projects-grid');
+            portfolioData.projects.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.style.animationDelay = `${0.3 + index * 0.1}s`;
+
+                const techBadges = project.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('');
+                const featuredBanner = project.featured ? '<span class="featured-banner">FEATURED</span>' : '';
+                
+                const linkLabel = project.links.label || 'Live Demo';
+                const firstLinkHtml = project.links.demo ? `<a href="${project.links.demo}" class="project-link">${linkLabel}</a>` : '';
+                const secondLinkHtml = project.links.github ? `<a href="${project.links.github}" class="project-link">GitHub</a>` : '';
+
+                projectCard.innerHTML = `
+                    <div class="project-image">
+                        ${featuredBanner}
+                        <div class="project-icon">${project.icon}</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">${project.title}</h3>
+                            <span class="project-type">${project.type}</span>
+                        </div>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tech">
+                            ${techBadges}
+                        </div>
+                        <div class="project-links">
+                            ${firstLinkHtml}
+                            ${secondLinkHtml}
+                        </div>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Load data when page loads
+        loadPageData();
+    </script>
     <script>
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

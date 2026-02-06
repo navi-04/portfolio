@@ -9,26 +9,22 @@
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="index.html" class="logo" style="text-decoration: none;">Naveenraj</a>
-        <ul class="nav-links">
-            <li><a href="about.html">about</a></li>
-            <li><a href="work.html">work</a></li>
-            <li><a href="projects.html">projects</a></li>
-            <li><a href="contact.html">contact</a></li>
+        <a href="index.html" class="logo" style="text-decoration: none;" id="nav-logo">Naveenraj</a>
+        <ul class="nav-links" id="nav-links">
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <p class="greeting">Hi, my name is</p>
-            <h1>Naveenraj.</h1>
-            <h2>I build open source things</h2>
-            <p class="description">
+            <p class="greeting" id="hero-greeting">Hi, my name is</p>
+            <h1 id="hero-title">Naveenraj.</h1>
+            <h2 id="hero-subtitle">I build open source things</h2>
+            <p class="description" id="hero-description">
                 I'm a software developer specializing in building exceptional digital experiences. 
                 Currently focused on creating accessible, human-centered products with cutting-edge technologies.
             </p>
-            <a href="https://github.com/navi-04" class="cta-button">Check out my work!</a>
+            <a href="https://github.com/navi-04" class="cta-button" id="hero-cta">Check out my work!</a>
         </div>
         
         <!-- Code decoration -->
@@ -39,29 +35,63 @@
                     <div class="terminal-dot"></div>
                     <div class="terminal-dot"></div>
                 </div>
-                <span class="terminal-title">Developer.js</span>
+                <span class="terminal-title" id="terminal-title">Developer.js</span>
             </div>
             <div class="terminal-body">
-                <pre><code><span class="code-comment">// Developer.js</span>
-<span class="code-line">const developer = {</span>
-<span class="code-line">  name: 'Naveenraj',</span>
-<span class="code-line">  skills: ['JavaScript', 'React',</span>
-<span class="code-line">           'Node.js', 'Python'],</span>
-<span class="code-line">  passion: 'building cool stuff',</span>
-<span class="code-line">  coffee: Infinity,</span>
-<span class="code-line">  status: 'coding...'</span>
-<span class="code-line">};</span>
-
-<span class="code-comment">// Always learning</span>
-<span class="code-line">while (true) {</span>
-<span class="code-line">  developer.learn();</span>
-<span class="code-line">  developer.build();</span>
-<span class="code-line">  developer.improve();</span>
-<span class="code-line">}</span></code></pre>
+                <pre><code id="terminal-code"></code></pre>
             </div>
         </div>
     </section>
 
+    <script src="data.js"></script>
+    <script>
+        // Load data from data.js
+        function loadPageData() {
+            // Navigation
+            const navLogo = document.getElementById('nav-logo');
+            navLogo.textContent = portfolioData.personal.name;
+
+            const navLinks = document.getElementById('nav-links');
+            portfolioData.navigation.forEach(item => {
+                if (item.name !== 'home') {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = item.href;
+                    a.textContent = item.name;
+                    li.appendChild(a);
+                    navLinks.appendChild(li);
+                }
+            });
+
+            // Hero Section
+            document.getElementById('hero-greeting').textContent = portfolioData.hero.greeting;
+            document.getElementById('hero-title').textContent = portfolioData.hero.title;
+            document.getElementById('hero-subtitle').textContent = portfolioData.hero.subtitle;
+            document.getElementById('hero-description').textContent = portfolioData.hero.description;
+            
+            const ctaButton = document.getElementById('hero-cta');
+            ctaButton.textContent = portfolioData.hero.cta.text;
+            ctaButton.href = portfolioData.hero.cta.link;
+
+            // Terminal
+            document.getElementById('terminal-title').textContent = portfolioData.hero.terminal.title;
+            
+            // Format terminal code with spans
+            const codeLines = portfolioData.hero.terminal.code.split('\n');
+            let formattedCode = '';
+            codeLines.forEach(line => {
+                if (line.trim().startsWith('//')) {
+                    formattedCode += `<span class="code-comment">${line}</span>\n`;
+                } else {
+                    formattedCode += `<span class="code-line">${line}</span>\n`;
+                }
+            });
+            document.getElementById('terminal-code').innerHTML = formattedCode;
+        }
+
+        // Load data when page loads
+        loadPageData();
+    </script>
     <script>
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

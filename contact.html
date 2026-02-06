@@ -267,61 +267,28 @@
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="index.html" class="logo" style="text-decoration: none;">Naveenraj</a>
-        <ul class="nav-links">
-            <li><a href="index.html">home</a></li>
-            <li><a href="about.html">about</a></li>
-            <li><a href="work.html">work</a></li>
-            <li><a href="projects.html">projects</a></li>
-            <li><a href="contact.html">contact</a></li>
+        <a href="index.html" class="logo" style="text-decoration: none;" id="nav-logo">Naveenraj</a>
+        <ul class="nav-links" id="nav-links">
         </ul>
     </nav>
 
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="contact-container">
-            <h1 class="section-title">Get In Touch</h1>
-            <p class="section-subtitle">
+            <h1 class="section-title" id="contact-title">Get In Touch</h1>
+            <p class="section-subtitle" id="contact-subtitle">
                 Have a project in mind or just want to chat? Feel free to reach out. 
                 I'm always open to discussing new opportunities and collaborations.
             </p>
             
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="info-item">
-                        <div class="info-icon">📧</div>
-                        <h3 class="info-title">Email</h3>
-                        <a href="mailto:naveenraj@example.com" class="info-detail">naveenraj@example.com</a>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">📱</div>
-                        <h3 class="info-title">Phone</h3>
-                        <a href="tel:+1234567890" class="info-detail">+1 (234) 567-890</a>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">📍</div>
-                        <h3 class="info-title">Location</h3>
-                        <span class="info-detail">Everywhere, Internet</span>
-                    </div>
+                    <div id="contact-info-items"></div>
 
                     <div class="info-item">
                         <div class="info-icon">🌐</div>
                         <h3 class="info-title">Social</h3>
-                        <div class="social-links">
-                            <a href="https://github.com/navi-04" class="social-link" target="_blank" title="GitHub">
-                                <span>G</span>
-                            </a>
-                            <a href="#" class="social-link" target="_blank" title="LinkedIn">
-                                <span>in</span>
-                            </a>
-                            <a href="#" class="social-link" target="_blank" title="Twitter">
-                                <span>X</span>
-                            </a>
-                            <a href="#" class="social-link" target="_blank" title="Dev.to">
-                                <span>D</span>
-                            </a>
+                        <div class="social-links" id="social-links">
                         </div>
                     </div>
 
@@ -332,12 +299,7 @@
                             <div class="terminal-dot"></div>
                         </div>
                         <div class="terminal-body">
-                            <pre><code><span class="terminal-comment">// Quick response</span>
-<span class="terminal-line">const responseTime = {</span>
-<span class="terminal-line">  email: "24 hours",</span>
-<span class="terminal-line">  message: "2-3 days",</span>
-<span class="terminal-line">  availability: "open"</span>
-<span class="terminal-line">};</span></code></pre>
+                            <pre><code id="terminal-code"></code></pre>
                         </div>
                     </div>
                 </div>
@@ -369,6 +331,78 @@
         </div>
     </section>
 
+    <script src="data.js"></script>
+    <script>
+        // Load data from data.js
+        function loadPageData() {
+            // Navigation
+            const navLogo = document.getElementById('nav-logo');
+            navLogo.textContent = portfolioData.personal.name;
+
+            const navLinks = document.getElementById('nav-links');
+            portfolioData.navigation.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.href;
+                a.textContent = item.name;
+                li.appendChild(a);
+                navLinks.appendChild(li);
+            });
+
+            // Contact title and subtitle
+            document.getElementById('contact-title').textContent = portfolioData.contact.title;
+            document.getElementById('contact-subtitle').textContent = portfolioData.contact.subtitle;
+
+            // Contact info items
+            const infoItemsContainer = document.getElementById('contact-info-items');
+            portfolioData.contact.info.forEach(info => {
+                const infoItem = document.createElement('div');
+                infoItem.className = 'info-item';
+                
+                if (info.link) {
+                    infoItem.innerHTML = `
+                        <div class="info-icon">${info.icon}</div>
+                        <h3 class="info-title">${info.title}</h3>
+                        <a href="${info.link}" class="info-detail">${info.detail}</a>
+                    `;
+                } else {
+                    infoItem.innerHTML = `
+                        <div class="info-icon">${info.icon}</div>
+                        <h3 class="info-title">${info.title}</h3>
+                        <span class="info-detail">${info.detail}</span>
+                    `;
+                }
+                infoItemsContainer.appendChild(infoItem);
+            });
+
+            // Social links
+            const socialLinksContainer = document.getElementById('social-links');
+            portfolioData.contact.social.forEach(social => {
+                const a = document.createElement('a');
+                a.href = social.link;
+                a.className = 'social-link';
+                a.target = '_blank';
+                a.title = social.name;
+                a.innerHTML = `<span>${social.icon}</span>`;
+                socialLinksContainer.appendChild(a);
+            });
+
+            // Terminal code
+            const terminalCode = portfolioData.contact.terminal.code.split('\n');
+            let formattedCode = '';
+            terminalCode.forEach(line => {
+                if (line.trim().startsWith('//')) {
+                    formattedCode += `<span class="terminal-comment">${line}</span>\n`;
+                } else {
+                    formattedCode += `<span class="terminal-line">${line}</span>\n`;
+                }
+            });
+            document.getElementById('terminal-code').innerHTML = formattedCode;
+        }
+
+        // Load data when page loads
+        loadPageData();
+    </script>
     <script>
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {

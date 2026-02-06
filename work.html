@@ -164,13 +164,8 @@
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="index.html" class="logo" style="text-decoration: none;">Naveenraj</a>
-        <ul class="nav-links">
-            <li><a href="index.html">home</a></li>
-            <li><a href="about.html">about</a></li>
-            <li><a href="work.html">work</a></li>
-            <li><a href="projects.html">projects</a></li>
-            <li><a href="contact.html">contact</a></li>
+        <a href="index.html" class="logo" style="text-decoration: none;" id="nav-logo">Naveenraj</a>
+        <ul class="nav-links" id="nav-links">
         </ul>
     </nav>
 
@@ -180,124 +175,63 @@
             <h1 class="section-title">Work Experience</h1>
             <p class="section-subtitle">Places I've worked and things I've built</p>
             
-            <div class="work-grid">
-                <div class="work-item">
-                    <div class="work-header">
-                        <div>
-                            <h3 class="work-title">Full Stack Developer</h3>
-                            <div class="work-company">Tech Solutions Inc.</div>
-                            <div class="work-period">Jan 2023 - Present</div>
-                        </div>
-                        <span class="work-type">Full-time</span>
-                    </div>
-                    <p class="work-description">
-                        Led development of scalable web applications and collaborated with cross-functional 
-                        teams to deliver high-quality software solutions.
-                    </p>
-                    <ul class="work-highlights">
-                        <li>Developed and maintained multiple client-facing web applications using React and Node.js</li>
-                        <li>Improved application performance by 40% through code optimization and caching strategies</li>
-                        <li>Mentored junior developers and conducted code reviews</li>
-                        <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
-                    </ul>
-                    <div class="work-tech">
-                        <span class="tech-tag">React.js</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">Docker</span>
-                    </div>
-                </div>
-
-                <div class="work-item">
-                    <div class="work-header">
-                        <div>
-                            <h3 class="work-title">Frontend Developer</h3>
-                            <div class="work-company">Creative Agency</div>
-                            <div class="work-period">Jun 2022 - Dec 2022</div>
-                        </div>
-                        <span class="work-type">Contract</span>
-                    </div>
-                    <p class="work-description">
-                        Built responsive and interactive user interfaces for various client projects, 
-                        focusing on user experience and accessibility.
-                    </p>
-                    <ul class="work-highlights">
-                        <li>Created pixel-perfect responsive designs for 10+ client websites</li>
-                        <li>Implemented modern UI/UX best practices and accessibility standards (WCAG 2.1)</li>
-                        <li>Collaborated with designers using Figma for seamless design-to-code workflow</li>
-                        <li>Reduced page load times by 50% through performance optimization</li>
-                    </ul>
-                    <div class="work-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">Figma</span>
-                    </div>
-                </div>
-
-                <div class="work-item">
-                    <div class="work-header">
-                        <div>
-                            <h3 class="work-title">Software Developer Intern</h3>
-                            <div class="work-company">StartUp Co.</div>
-                            <div class="work-period">Jan 2022 - May 2022</div>
-                        </div>
-                        <span class="work-type">Internship</span>
-                    </div>
-                    <p class="work-description">
-                        Contributed to the development of a real-time collaboration platform, 
-                        gaining hands-on experience with modern web technologies.
-                    </p>
-                    <ul class="work-highlights">
-                        <li>Developed features for real-time collaborative editing using WebSockets</li>
-                        <li>Fixed 50+ bugs and implemented unit tests achieving 85% code coverage</li>
-                        <li>Participated in agile ceremonies and sprint planning</li>
-                        <li>Documented APIs and created technical documentation</li>
-                    </ul>
-                    <div class="work-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Socket.io</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Jest</span>
-                    </div>
-                </div>
-
-                <div class="work-item">
-                    <div class="work-header">
-                        <div>
-                            <h3 class="work-title">Freelance Developer</h3>
-                            <div class="work-company">Self-Employed</div>
-                            <div class="work-period">2021 - 2022</div>
-                        </div>
-                        <span class="work-type">Freelance</span>
-                    </div>
-                    <p class="work-description">
-                        Provided web development services to small businesses and startups, 
-                        delivering custom solutions tailored to client needs.
-                    </p>
-                    <ul class="work-highlights">
-                        <li>Built and deployed 15+ websites for various clients</li>
-                        <li>Managed entire project lifecycle from requirements gathering to deployment</li>
-                        <li>Provided ongoing maintenance and support</li>
-                        <li>Achieved 100% client satisfaction rate</li>
-                    </ul>
-                    <div class="work-tech">
-                        <span class="tech-tag">WordPress</span>
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">cPanel</span>
-                    </div>
-                </div>
+            <div class="work-grid" id="work-grid">
             </div>
         </div>
     </section>
 
+    <script src="data.js"></script>
+    <script>
+        // Load data from data.js
+        function loadPageData() {
+            // Navigation
+            const navLogo = document.getElementById('nav-logo');
+            navLogo.textContent = portfolioData.personal.name;
+
+            const navLinks = document.getElementById('nav-links');
+            portfolioData.navigation.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.href;
+                a.textContent = item.name;
+                li.appendChild(a);
+                navLinks.appendChild(li);
+            });
+
+            // Work items
+            const workGrid = document.getElementById('work-grid');
+            portfolioData.work.forEach((work, index) => {
+                const workItem = document.createElement('div');
+                workItem.className = 'work-item';
+                workItem.style.animationDelay = `${0.3 + index * 0.1}s`;
+
+                const highlightsList = work.highlights.map(h => `<li>${h}</li>`).join('');
+                const techTags = work.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('');
+
+                workItem.innerHTML = `
+                    <div class="work-header">
+                        <div>
+                            <h3 class="work-title">${work.title}</h3>
+                            <div class="work-company">${work.company}</div>
+                            <div class="work-period">${work.period}</div>
+                        </div>
+                        <span class="work-type">${work.type}</span>
+                    </div>
+                    <p class="work-description">${work.description}</p>
+                    <ul class="work-highlights">
+                        ${highlightsList}
+                    </ul>
+                    <div class="work-tech">
+                        ${techTags}
+                    </div>
+                `;
+                workGrid.appendChild(workItem);
+            });
+        }
+
+        // Load data when page loads
+        loadPageData();
+    </script>
     <script>
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

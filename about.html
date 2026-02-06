@@ -175,50 +175,23 @@
 <body>
     <!-- Navbar -->
     <nav>
-        <a href="index.html" class="logo" style="text-decoration: none;">Naveenraj</a>
-        <ul class="nav-links">
-            <li><a href="index.html">home</a></li>
-            <li><a href="about.html">about</a></li>
-            <li><a href="work.html">work</a></li>
-            <li><a href="projects.html">projects</a></li>
-            <li><a href="contact.html">contact</a></li>
+        <a href="index.html" class="logo" style="text-decoration: none;" id="nav-logo">Naveenraj</a>
+        <ul class="nav-links" id="nav-links">
         </ul>
     </nav>
 
     <!-- About Section -->
     <section class="about-section">
         <div class="about-container">
-            <h1 class="section-title">About Me</h1>
+            <h1 class="section-title" id="about-title">About Me</h1>
             
             <div class="about-content">
                 <div class="about-text">
-                    <p>
-                        Hello! I'm <strong>Naveenraj</strong>, a passionate software developer who loves turning ideas into 
-                        elegant digital solutions. My journey in web development started with a curiosity about how 
-                        things work on the internet, and it has evolved into a full-blown passion for creating 
-                        beautiful, functional applications.
-                    </p>
-                    <p>
-                        I specialize in building modern web applications using cutting-edge technologies. 
-                        Whether it's crafting responsive user interfaces, developing robust backend systems, 
-                        or optimizing performance, I enjoy every aspect of the development process.
-                    </p>
-                    <p>
-                        When I'm not coding, you can find me exploring new technologies, contributing to open-source 
-                        projects, or enjoying a good cup of coffee while brainstorming new ideas.
-                    </p>
+                    <div id="about-paragraphs"></div>
 
                     <div class="skills-section">
                         <h3 class="skills-title">Technologies I work with</h3>
-                        <div class="skills-grid">
-                            <div class="skill-item">JavaScript (ES6+)</div>
-                            <div class="skill-item">Python</div>
-                            <div class="skill-item">React.js</div>
-                            <div class="skill-item">Node.js</div>
-                            <div class="skill-item">HTML & CSS</div>
-                            <div class="skill-item">Git & GitHub</div>
-                            <div class="skill-item">MongoDB</div>
-                            <div class="skill-item">Express.js</div>
+                        <div class="skills-grid" id="skills-grid">
                         </div>
                     </div>
                 </div>
@@ -230,60 +203,87 @@
                             <div class="terminal-dot"></div>
                             <div class="terminal-dot"></div>
                         </div>
-                        <span class="terminal-title">about-me.json</span>
+                        <span class="terminal-title" id="terminal-title">about-me.json</span>
                     </div>
                     <div class="terminal-body">
-                        <pre><code><span class="code-line">{</span>
-<span class="code-line">  "name": "Naveenraj",</span>
-<span class="code-line">  "role": "Software Developer",</span>
-<span class="code-line">  "location": "Everywhere",</span>
-<span class="code-line">  "education": {</span>
-<span class="code-line">    "degree": "Computer Science",</span>
-<span class="code-line">    "status": "Continuous Learning"</span>
-<span class="code-line">  },</span>
-<span class="code-line">  "interests": [</span>
-<span class="code-line">    "Web Development",</span>
-<span class="code-line">    "Open Source",</span>
-<span class="code-line">    "Problem Solving",</span>
-<span class="code-line">    "UI/UX Design"</span>
-<span class="code-line">  ],</span>
-<span class="code-line">  "currentlyLearning": [</span>
-<span class="code-line">    "Advanced React Patterns",</span>
-<span class="code-line">    "System Design",</span>
-<span class="code-line">    "Cloud Architecture"</span>
-<span class="code-line">  ],</span>
-<span class="code-line">  "funFact": "I debug with console.log()"</span>
-<span class="code-line">}</span></code></pre>
+                        <pre><code id="terminal-code"></code></pre>
                     </div>
                 </div>
             </div>
 
             <div class="experience-section">
                 <h2 class="section-title">Experience</h2>
-                
-                <div class="experience-item">
-                    <h3 class="experience-title">Full Stack Developer</h3>
-                    <div class="experience-company">Personal Projects</div>
-                    <div class="experience-period">2022 - Present</div>
-                    <p class="experience-description">
-                        Building and maintaining various web applications using modern technologies. 
-                        Focused on creating responsive, user-friendly interfaces and scalable backend systems.
-                    </p>
-                </div>
-
-                <div class="experience-item">
-                    <h3 class="experience-title">Open Source Contributor</h3>
-                    <div class="experience-company">GitHub Community</div>
-                    <div class="experience-period">2021 - Present</div>
-                    <p class="experience-description">
-                        Contributing to open-source projects, fixing bugs, adding features, and helping 
-                        maintain documentation. Active in code reviews and community discussions.
-                    </p>
-                </div>
+                <div id="experience-list"></div>
             </div>
         </div>
     </section>
 
+    <script src="data.js"></script>
+    <script>
+        // Load data from data.js
+        function loadPageData() {
+            // Navigation
+            const navLogo = document.getElementById('nav-logo');
+            navLogo.textContent = portfolioData.personal.name;
+
+            const navLinks = document.getElementById('nav-links');
+            portfolioData.navigation.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.href;
+                a.textContent = item.name;
+                li.appendChild(a);
+                navLinks.appendChild(li);
+            });
+
+            // About title
+            document.getElementById('about-title').textContent = portfolioData.about.title;
+
+            // About paragraphs
+            const paragraphsContainer = document.getElementById('about-paragraphs');
+            portfolioData.about.paragraphs.forEach(paragraph => {
+                const p = document.createElement('p');
+                p.innerHTML = paragraph;
+                paragraphsContainer.appendChild(p);
+            });
+
+            // Skills
+            const skillsGrid = document.getElementById('skills-grid');
+            portfolioData.about.skills.forEach(skill => {
+                const div = document.createElement('div');
+                div.className = 'skill-item';
+                div.textContent = skill;
+                skillsGrid.appendChild(div);
+            });
+
+            // Terminal
+            document.getElementById('terminal-title').textContent = portfolioData.about.terminal.title;
+            const terminalData = JSON.stringify(portfolioData.about.terminal.data, null, 2);
+            const lines = terminalData.split('\n');
+            let formattedCode = '';
+            lines.forEach(line => {
+                formattedCode += `<span class="code-line">${line}</span>\n`;
+            });
+            document.getElementById('terminal-code').innerHTML = formattedCode;
+
+            // Experience
+            const experienceList = document.getElementById('experience-list');
+            portfolioData.experience.forEach(exp => {
+                const div = document.createElement('div');
+                div.className = 'experience-item';
+                div.innerHTML = `
+                    <h3 class="experience-title">${exp.title}</h3>
+                    <div class="experience-company">${exp.company}</div>
+                    <div class="experience-period">${exp.period}</div>
+                    <p class="experience-description">${exp.description}</p>
+                `;
+                experienceList.appendChild(div);
+            });
+        }
+
+        // Load data when page loads
+        loadPageData();
+    </script>
     <script>
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
