@@ -177,9 +177,30 @@ document.addEventListener('click', () => {
 });
 
 
+// --- SCROLL HERO OBJECT (The "Core") ---
+const heroGeo = new THREE.TorusKnotGeometry(1.5, 0.5, 100, 16);
+const heroMat = new THREE.MeshStandardMaterial({ 
+    color: 0xffffff, 
+    wireframe: true,
+    transparent: true,
+    opacity: 0.1,
+    emissive: 0xffffff,
+    emissiveIntensity: 0.2
+});
+const scrollHero = new THREE.Mesh(heroGeo, heroMat);
+scrollHero.position.set(0, 0, 0);
+scene.add(scrollHero);
+
+
 // --- ANIMATION ---
 const clock = new THREE.Clock();
 let oldElapsedTime = 0;
+
+// Scroll Logic
+let scrollY = 0;
+window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+});
 
 const tick = () => {
     const elapsedTime = clock.getElapsedTime();
@@ -203,15 +224,45 @@ const tick = () => {
     
     // Mouse Interaction (Disturb objects)
     raycaster.setFromCamera(mouse, camera);
-    // Just simple disturbance: cast ray to z=0, apply force to nearby objects
-    // A simpler approximation: Assume mouse projects to z=0 plane at interaction distance
-    
-    // Apply "Wind" based on mouse x/y to all objects (fake interaction)
-    // Real interaction requires converting mouse 2D to 3D world pos.
     
     // Simple wobble of falling objects based on mouse X (Wind)
     world.gravity.x = mouse.x * 5;
     world.gravity.z = -mouse.y * 5;
+    
+    // --- SCROLL HERO ANIMATION ---
+    // Calculate Scroll Progress (0 to 1)
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const scrollProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+    
+    // Hero Spin (Always rotating)
+    scrollHero.rotation.x += deltaTime * 0.2;
+    scrollHero.rotation.y += deltaTime * 0.3;
+    
+    // Position/Rotation Interpolation based on section
+    // We define keyframes basically
+    let targetPos = new THREE.Vector3(0, 0, 0);
+    let targetRot = new THREE.Vector3(0, 0, 0);
+    
+    if (scrollProgress < 0.2) {
+        // HERO SECTION: Center
+        targetPos.set(0, 2, 0);
+    } else if (scrollProgress < 0.5) {
+        // ABOUT/SKILLS: Move Left
+        targetPos.set(-8, 0, -5);
+        scrollHero.rotation.z += deltaTime * 0.5;
+    } else if (scrollProgress < 0.8) {
+        // EXPEREINCE/PROJECTS: Move Right
+        targetPos.set(8, 0, -5);
+        scrollHero.rotation.z -= deltaTime * 0.5;
+    } else {
+        // CONTACT: Center Close Up
+        targetPos.set(0, 0, 5);
+    }
+    
+    // Smooth Lerp
+    scrollHero.position.x += (targetPos.x - scrollHero.position.x) * 0.05;
+    scrollHero.position.y += (targetPos.y - scrollHero.position.y) * 0.05;
+    scrollHero.position.z += (targetPos.z - scrollHero.position.z) * 0.05;
 
 
     renderer.render(scene, camera);
