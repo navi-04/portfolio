@@ -1,173 +1,194 @@
-// Three.js Particle Network Background
-// Implements a "constellation" effect with interactive particles
+import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js';
+import { EffectComposer } from 'https://unpkg.com/three@0.126.1/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'https://unpkg.com/three@0.126.1/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'https://unpkg.com/three@0.126.1/examples/jsm/postprocessing/UnrealBloomPass.js';
 
-const initThreeJS = () => {
-    // Canvas & Scene Setup
-    const canvas = document.querySelector('#bg-canvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({
-        canvas: canvas,
-        alpha: true,
-        antialias: true
-    });
+const canvas = document.querySelector('#bg-canvas');
+const scene = new THREE.Scene();
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// Fog for depth
+scene.fog = new THREE.FogExp2(0x000000, 0.002);
 
-    // Particle Configuration
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = window.innerWidth < 768 ? 50 : 120; // Fewer particles on mobile
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 10;
+
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.toneMapping = THREE.ReinhardToneMapping;
+
+// --- GEOMETRY: Floating Cyber Shapes ---
+const geometry = new THREE.IcosahedronGeometry(1, 0); // Low poly look
+
+// Instanced Mesh for performance (hundreds of objects)
+const material = new THREE.MeshStandardMaterial({
+    color: 0x111111,
+    roughness: 0.1,
+    metalness: 0.9,
+    emissive: 0x000000,
+    wireframe: false
+});
+
+const wireframeMaterial = new THREE.MeshBasicMaterial({
+    color: 0x00f3ff, // Cyan Neon
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3
+});
+
+const count = 150;
+const mesh = new THREE.InstancedMesh(geometry, material, count);
+const wireMesh = new THREE.InstancedMesh(geometry, wireframeMaterial, count);
+
+const dummy = new THREE.Object3D();
+const positions = [];
+const speeds = [];
+const rotations = [];
+
+for (let i = 0; i < count; i++) {
+    // Random position spread
+    const x = (Math.random() - 0.5) * 60;
+    const y = (Math.random() - 0.5) * 60;
+    const z = (Math.random() - 0.5) * 40 - 10;
     
-    const posArray = new Float32Array(particlesCount * 3);
-    const velocityArray = new Float32Array(particlesCount * 3); // Store velocity manually
+    dummy.position.set(x, y, z);
+    
+    // Random rotation
+    dummy.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+    
+    // Random scale
+    const scale = Math.random() * 1.5 + 0.5;
+    dummy.scale.set(scale, scale, scale);
+    
+    dummy.updateMatrix();
+    mesh.setMatrixAt(i, dummy.matrix);
+    wireMesh.setMatrixAt(i, dummy.matrix);
 
-    // Initialize Particles
-    for(let i = 0; i < particlesCount * 3; i++) {
-        // Position
-        posArray[i] = (Math.random() - 0.5) * 20; // Spread range
-        // Velocity (random direction)
-        velocityArray[i] = (Math.random() - 0.5) * 0.02;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-    // Materials
-    const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.05,
-        color: 0x64ffda, // Mint color to match theme
-        transparent: true,
-        opacity: 0.8,
+    positions.push({ x, y, z, originalY: y });
+    speeds.push(Math.random() * 0.02 + 0.005);
+    rotations.push({
+        x: (Math.random() - 0.5) * 0.02,
+        y: (Math.random() - 0.5) * 0.02
     });
+}
 
-    // Mesh
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
+scene.add(mesh);
+scene.add(wireMesh);
 
-    // Lines (Lines between particles)
-    const lineMaterial = new THREE.LineBasicMaterial({
-        color: 0x64ffda,
-        transparent: true,
-        opacity: 0.15
-    });
+// --- LIGHTING ---
+const ambientLight = new THREE.AmbientLight(0x000000);
+scene.add(ambientLight);
 
-    // Group to hold lines (recreated every frame or updated)
-    // For performance, we'll use a single line segments geometry
-    const linesGeometry = new THREE.BufferGeometry();
-    const linesMesh = new THREE.LineSegments(linesGeometry, lineMaterial);
-    scene.add(linesMesh);
+// Key Light (Blue/Cyan)
+const pointLight1 = new THREE.PointLight(0x00f3ff, 2, 50);
+pointLight1.position.set(5, 5, 5);
+scene.add(pointLight1);
 
-    // Mouse Interaction
-    const mouse = { x: 0, y: 0 };
-    let targetX = 0;
-    let targetY = 0;
+// Fill Light (Purple/Magenta)
+const pointLight2 = new THREE.PointLight(0xbd00ff, 2, 50);
+pointLight2.position.set(-5, -5, 5);
+scene.add(pointLight2);
 
-    const windowHalfX = window.innerWidth / 2;
-    const windowHalfY = window.innerHeight / 2;
+// --- POST PROCESSING (BLOOM) ---
+const renderScene = new RenderPass(scene, camera);
 
-    document.addEventListener('mousemove', (event) => {
-        mouse.x = (event.clientX - windowHalfX);
-        mouse.y = (event.clientY - windowHalfY);
-    });
+const bloomPass = new UnrealBloomPass(
+    new THREE.Vector2(window.innerWidth, window.innerHeight),
+    1.5, // Strength
+    0.4, // Radius
+    0.85 // Threshold
+);
 
-    // Handle Resize
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+const composer = new EffectComposer(renderer);
+composer.addPass(renderScene);
+composer.addPass(bloomPass);
 
-    // Clock
-    const clock = new THREE.Clock();
 
-    // Animation Loop
-    const tick = () => {
-        const elapsedTime = clock.getElapsedTime();
+// --- INTERACTION ---
+const mouse = { x: 0, y: 0 };
+const target = { x: 0, y: 0 };
+const windowHalfX = window.innerWidth / 2;
+const windowHalfY = window.innerHeight / 2;
 
-        // Update Particle Positions
-        const positions = particlesGeometry.attributes.position.array;
+document.addEventListener('mousemove', (event) => {
+    mouse.x = (event.clientX - windowHalfX) * 0.001;
+    mouse.y = (event.clientY - windowHalfY) * 0.001;
+});
+
+// --- ANIMATION LOOP ---
+const clock = new THREE.Clock();
+
+function animate() {
+    const elapsedTime = clock.getElapsedTime();
+
+    // Smooth mouse follow
+    target.x = target.x * 0.95 + mouse.x * 0.05;
+    target.y = target.y * 0.95 + mouse.y * 0.05;
+
+    // Rotate entire camera/group slightly based on mouse
+    mesh.rotation.x = target.y * 0.5;
+    mesh.rotation.y = target.x * 0.5;
+    wireMesh.rotation.x = target.y * 0.5;
+    wireMesh.rotation.y = target.x * 0.5;
+
+    // Animate individual instances
+    for (let i = 0; i < count; i++) {
+        // Rise up effect (Antigravity)
+        positions[i].y += speeds[i];
         
-        // Gentle rotation of the whole cloud
-        particlesMesh.rotation.y = elapsedTime * 0.05;
-        linesMesh.rotation.y = elapsedTime * 0.05;
-
-        // Interactive movement based on mouse
-        targetX = mouse.x * 0.001;
-        targetY = mouse.y * 0.001;
-
-        particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
-        particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
-
-        // Update individual particles (simple drift)
-        // We could do complex physics, but simple rotation + parallax is usually enough and cheaper
-        
-        // Dynamic Line Connections
-        // We need to calculate world positions because the mesh is rotating
-        
-        // NOTE: For performance in JS, we'll do raw calculations on the CPU for small N
-        // A shader approach would be faster for N > 500, but N=100 is fine here.
-        
-        const linePositions = [];
-        const connectDistance = 3.5; // Threshold to connect
-
-        // We need to check distances. 
-        // Since mesh rotates, the relative distance in local space stays same!
-        // So we can just check local positions array.
-        
-        for (let i = 0; i < particlesCount; i++) {
-            const ix = positions[i * 3];
-            const iy = positions[i * 3 + 1];
-            const iz = positions[i * 3 + 2];
-
-            // Update positions (drift) using saved velocities
-            positions[i * 3] += velocityArray[i * 3];
-            positions[i * 3 + 1] += velocityArray[i * 3 + 1];
-            positions[i * 3 + 2] += velocityArray[i * 3 + 2];
-
-            // Boundary check (respawn if too far)
-            if (positions[i * 3] > 10) positions[i * 3] = -10;
-            if (positions[i * 3] < -10) positions[i * 3] = 10;
-            if (positions[i * 3 + 1] > 10) positions[i * 3 + 1] = -10;
-            if (positions[i * 3 + 1] < -10) positions[i * 3 + 1] = 10;
-            
-            // Connect loop
-            for (let j = i + 1; j < particlesCount; j++) {
-                const jx = positions[j * 3];
-                const jy = positions[j * 3 + 1];
-                const jz = positions[j * 3 + 2];
-
-                const dx = ix - jx;
-                const dy = iy - jy;
-                const dz = iz - jz;
-                const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-
-                if (dist < connectDistance) {
-                    linePositions.push(ix, iy, iz);
-                    linePositions.push(jx, jy, jz);
-                }
-            }
+        // Reset if too high
+        if (positions[i].y > 30) {
+            positions[i].y = -30;
         }
+
+        dummy.position.set(
+            positions[i].x,
+            positions[i].y,
+            positions[i].z
+        );
+
+        // Constant rotation
+        const rot = rotations[i];
+        // We need to retrieve current rotation to add to it, but Matrix doesn't store Euler easily
+        // Instead, we just rotate the dummy based on time + offset
         
-        particlesGeometry.attributes.position.needsUpdate = true;
-
-        // Update lines geometry
-        linesGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+        dummy.rotation.set(
+            elapsedTime * rot.x + i,
+            elapsedTime * rot.y + i,
+            0
+        );
         
-        // Render
-        renderer.render(scene, camera);
-        window.requestAnimationFrame(tick);
+        // Scale pulse? Maybe too expensive to update every frame without shader
+        // Keep scale constant from init
+        
+        dummy.updateMatrix();
+        mesh.setMatrixAt(i, dummy.matrix);
+        wireMesh.setMatrixAt(i, dummy.matrix);
     }
+    
+    mesh.instanceMatrix.needsUpdate = true;
+    wireMesh.instanceMatrix.needsUpdate = true;
 
-    // Set camera Z
-    camera.position.z = 5;
+    // Pulse lights
+    pointLight1.intensity = 2 + Math.sin(elapsedTime * 2) * 0.5;
+    pointLight2.intensity = 2 + Math.cos(elapsedTime * 1.5) * 0.5;
 
-    tick();
-};
+    // Render via Composer (for Bloom)
+    composer.render();
+    
+    requestAnimationFrame(animate);
+}
 
-// Wait for Three.js to load then init
-const checkThree = setInterval(() => {
-    if (window.THREE) {
-        clearInterval(checkThree);
-        initThreeJS();
-    }
-}, 100);
+// Handle Resize
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    composer.setSize(window.innerWidth, window.innerHeight);
+});
+
+animate();
