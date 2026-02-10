@@ -1,19 +1,9 @@
-/* Base & Variables */
+/* Base */
 :root {
-    --bg-color: #111111; /* Studio Dark */
-    --text-primary: #ffffff;
-    --text-secondary: #aaaaaa;
-    --accent: #ffffff; /* Stark White Accent */
-    
-    --font-heading: 'Inter', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    
-    --nav-height: 100px;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --card-hover-border: rgba(255, 255, 255, 0.5);
-    
-    --trans-default: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --bg-color: #202025; /* Dark background to match 3D void */
+    --accent: #64ffda;
+    --text: #e6f1ff;
+    --glass: rgba(20, 20, 25, 0.9);
 }
 
 * {
@@ -22,315 +12,176 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background-color: var(--bg-color);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-    font-feature-settings: "ss01", "ss02"; /* Modern font alternates */
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /* 3D Scene takes over */
+    width: 100vw;
+    height: 100vh;
 }
 
-#bg-canvas {
+#webgl {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    /* Clean gradient fallback */
-    background: radial-gradient(circle at center, #222222 0%, #111111 100%);
+    outline: none;
 }
 
-/* Typography */
-h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    letter-spacing: -0.03em; /* Tight tracking for modern feel */
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: var(--trans-default);
-}
-
-.highlight {
-    color: var(--text-primary);
-    font-weight: 800;
-    border-bottom: 2px solid #fff;
-}
-
-/* Section Headings - Minimalist */
-.section-heading {
-    font-size: clamp(40px, 6vw, 80px);
-    font-weight: 800;
-    margin-bottom: 60px;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.section-heading .number {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--text-secondary);
-    font-feature-settings: "tnum";
-}
-
-/* Custom Cursor */
-.cursor-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9999;
-    pointer-events: none;
-    mix-blend-mode: difference; /* Invert color */
-}
-
-.cursor-outline {
-    width: 50px;
-    height: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    position: fixed;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9998;
-    pointer-events: none;
-    transition: width 0.2s, height 0.2s;
-}
-
-/* Navigation */
-nav {
+/* Loading Screen */
+.loader {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    height: var(--nav-height);
-    padding: 0 5vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    mix-blend-mode: difference; /* Ensure visibility over everything */
-}
-
-.logo {
-    color: #fff;
-    font-weight: 800;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: -0.05em;
-}
-
-.nav-links {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-}
-
-.nav-link {
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #ccc;
-}
-
-.nav-link:hover {
-    color: #fff;
-}
-
-.nav-number { display: none; }
-
-/* Main Content */
-main {
-    padding: 0 10vw;
-}
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
+    height: 100%;
+    background: var(--bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
-    padding-top: 100px;
-    z-index: 1; /* Above canvas */
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
 }
 
-.hero-content {
-    max-width: 800px;
+.loader.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.greeting {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--accent);
+    animation: spin 1s ease-in-out infinite;
     margin-bottom: 20px;
-    font-weight: 500;
 }
 
-#hero-title {
-    font-size: clamp(60px, 12vw, 160px);
-    line-height: 0.9;
-    margin-bottom: 20px;
-    margin-left: -5px;
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
-#hero-subtitle {
-    font-size: clamp(30px, 5vw, 60px);
-    font-weight: 300;
-    color: var(--text-secondary);
-    line-height: 1.1;
-    margin-bottom: 50px;
-}
-
-.description {
-    max-width: 500px;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 60px;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 20px 40px;
-    border: 1px solid #fff;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: var(--trans-default);
-}
-
-.cta-button:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* Hide hero visual code terminal - Let physics shine */
-.hero-visual { display: none; }
-
-
-/* Sections */
-.section { padding: 15vh 0; }
-
-/* About */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-}
-
-.about-text p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--text-secondary);
-}
-
-.skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    list-style: none;
-}
-
-.skills-list li {
+/* Instructions */
+.instructions {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
-    border: 1px solid var(--card-border);
-    border-radius: 50px; /* Pill shape */
+    border-radius: 30px;
+    font-family: 'Fira Code', monospace;
     font-size: 0.9rem;
-    color: var(--text-secondary);
-    transition: var(--trans-default);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    animation: fadeIn 1s 2s forwards;
 }
 
-.skills-list li:hover {
-    border-color: #fff;
-    color: #fff;
-}
-.skills-list li::before { content: none; }
-
-/* Experience - Minimalist Cards */
-.experience-container { max-width: 900px; margin: 0 auto; }
-
-.experience-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--card-border);
-    padding: 50px 0;
-    border-radius: 0; /* Boxy */
-    margin-bottom: 0;
-    transition: var(--trans-default);
-}
-.experience-card:hover {
-    background: rgba(255, 255, 255, 0.02);
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
-.exp-header h3 { font-size: 2rem; margin-bottom: 5px; }
-.exp-header .company { color: var(--text-secondary); font-weight: 300; }
-.exp-desc { font-size: 1.1rem; max-width: 600px; margin-top: 10px; }
-
-/* Projects - Grid */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 40px;
-}
-
-.project-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--card-border);
-    padding: 40px;
-    border-radius: 4px;
-    transition: var(--trans-default);
+/* Modal System */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-.project-card:hover {
-    border-color: var(--card-hover-border);
-    transform: translateY(-5px);
+.modal-container.active {
+    opacity: 1;
+    pointer-events: all;
 }
 
-.project-top { margin-bottom: 40px; }
-.folder-icon { display: none; } /* Ultra minimal */
-
-.project-title { font-size: 1.8rem; margin-bottom: 15px; }
-.project-desc { color: var(--text-secondary); line-height: 1.7; flex-grow: 1; margin-bottom: 30px; }
-
-.project-tech {
-    gap: 10px;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+.modal-content {
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 40px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
 }
 
-/* Contact */
-.contact-container { text-align: center; max-width: 800px; margin: 0 auto; }
-.section-heading-center { font-size: clamp(50px, 10vw, 100px); margin-bottom: 20px; color: #fff; }
-.big-button {
+.modal-container.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--text);
     font-size: 1.5rem;
-    padding: 30px 60px;
-    border: 1px solid #fff;
-    color: #fff;
-    margin-top: 60px;
+    cursor: pointer;
+    transition: color 0.2s;
 }
-.big-button:hover { background: #fff; color: #000; }
 
-/* Mobile */
-@media (max-width: 768px) {
-    main { padding: 0 20px; }
-    .about-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .hamburger { display: block; filter: invert(1); }
+.close-btn:hover {
+    color: var(--accent);
+}
+
+/* Modal Content Styles */
+h2 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-family: 'Fira Code', monospace;
+}
+
+h3 {
+    margin: 20px 0 10px;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #a8b2d1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--accent);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: 'Fira Code', monospace;
 }
