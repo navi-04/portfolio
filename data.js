@@ -23,17 +23,17 @@ const portfolioData = {
     hero: {
         greeting: "Hi, my name is",
         title: "Naveenraj.",
-        subtitle: "I build open source things",
+        subtitle: "I build open source applications",
         description: "I'm a software developer specializing in building exceptional digital experiences. Currently focused on creating accessible, human-centered products with cutting-edge technologies.",
         cta: {
-            text: "Check out my work!",
+            text: "Check out my github!",
             link: "https://github.com/navi-04"
         },
         terminal: {
             title: "Developer.js",
             code: `// Developer.js
 const developer = {
-  name: 'Naveenraj',
+  name: 'Naveenraj Thiyagarajan',
   skills: ['JavaScript', 'React',
            'Node.js', 'Python'],
   passion: 'building cool stuff',
@@ -65,13 +65,16 @@ while (true) {
             "Node.js",
             "HTML & CSS",
             "Git & GitHub",
-            "MongoDB",
-            "Express.js"
+            "SQL",
+            "Vercel",
+            "Dart",
+            "Flutter"
+  
         ],
         terminal: {
             title: "about-me.json",
             data: {
-                name: "Naveenraj",
+                name: "Naveenraj Thiyagarajan",
                 role: "Software Developer",
                 location: "Everywhere",
                 education: {
