@@ -2,97 +2,65 @@
 const portfolioData = {
     // Personal Information
     personal: {
-        name: "Naveenraj",
+        name: "Naveenraj Thiyagarajan",
         role: "Software Developer",
-        location: "Everywhere, Internet",
-        email: "naveenraj@example.com",
-        phone: "+1 (234) 567-890",
-        github: "https://github.com/navi-04"
+        location: "Karur, India",
+        email: "naveenrajthiyagarajan6@gmail.com",
+        phone: "+91 8122118540",
+        github: "https://github.com/navi-04",
+        linkedin: "#", // Update if provided
+        site: "nraj.me"
     },
 
-    // Navigation
+    // Navigation (Single Page)
     navigation: [
-        { name: "home", href: "index.html" },
-        { name: "about", href: "about.html" },
-        { name: "work", href: "work.html" },
-        { name: "projects", href: "projects.html" },
-        { name: "contact", href: "contact.html" }
+        { name: "Start", href: "#hero" },
+        { name: "Story", href: "#about" },
+        { name: "Experience", href: "#experience" },
+        { name: "Creation", href: "#projects" },
+        { name: "Contact", href: "#contact" }
     ],
 
     // Hero Section
     hero: {
-        greeting: "Hi, my name is",
+        greeting: "Hello, world. I am",
         title: "Naveenraj.",
-        subtitle: "I build open source applications",
-        description: "I'm a software developer specializing in building exceptional digital experiences. Currently focused on creating accessible, human-centered products with cutting-edge technologies.",
+        subtitle: "I architect digital realities.",
+        description: "Passionate Software Developer skilled in Python, JavaScript, and automation. I build efficient, innovative solutions that bridge the gap between complex problems and elegant experiences.",
         cta: {
-            text: "Check out my github!",
-            link: "https://github.com/navi-04"
+            text: "View My Journey",
+            link: "#about"
         },
         terminal: {
-            title: "Developer.js",
-            code: `// Developer.js
-const developer = {
-  name: 'Naveenraj Thiyagarajan',
-  skills: ['JavaScript', 'React',
-           'Node.js', 'Python'],
-  passion: 'building cool stuff',
-  coffee: Infinity,
-  status: 'coding...'
-};
-
-// Always learning
-while (true) {
-  developer.learn();
-  developer.build();
-  developer.improve();
-}`
+            title: "status.log",
+            code: `> Initializing developer profile...
+> Loading skills... [Python, JS, AI]
+> Loading experience... [Innoov, Fewinfos]
+> Status: Ready to build.
+> Current Mission: Innovation.`
         }
     },
 
     // About Section
     about: {
-        title: "About Me",
+        title: "My Story",
         paragraphs: [
-            "Hello! I'm <strong>Naveenraj</strong>, a passionate software developer who loves turning ideas into elegant digital solutions. My journey in web development started with a curiosity about how things work on the internet, and it has evolved into a full-blown passion for creating beautiful, functional applications.",
-            "I specialize in building modern web applications using cutting-edge technologies. Whether it's crafting responsive user interfaces, developing robust backend systems, or optimizing performance, I enjoy every aspect of the development process.",
-            "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying a good cup of coffee while brainstorming new ideas."
+            "I'm a **Software Developer** based in Karur, passionate about automation, agile development, and digital product design. My journey is defined by a relentless pursuit of efficiency and innovation.",
+            "With a strong foundation in **Python** and **JavaScript**, I specialize in building systems that not only work but excel. From cross-cultural collaboration at **Innoov** in Japan to leading open-source initiatives at **Fewinfos**, I thrive in dynamic environments.",
+            "I believe in the power of **leadership** and **collaboration** to drive technical success. When I'm not coding, I'm analyzing data structures or exploring the frontiers of AI modeling."
         ],
         skills: [
-            "JavaScript (ES6+)",
-            "Python",
-            "React.js",
-            "Node.js",
-            "HTML & CSS",
-            "Git & GitHub",
-            "SQL",
-            "Vercel",
-            "Dart",
-            "Flutter"
-  
+            "Python", "JavaScript", "React", "CI/CD", 
+            "Data Structures", "AI Modeling", "Automation",
+            "Jira Admin", "Agile", "Leadership"
         ],
         terminal: {
-            title: "about-me.json",
+            title: "skills.json",
             data: {
-                name: "Naveenraj Thiyagarajan",
-                role: "Software Developer",
-                location: "Everywhere",
-                education: {
-                    degree: "Computer Science",
-                    status: "Continuous Learning"
-                },
-                interests: [
-                    "Web Development",
-                    "Open Source",
-                    "Problem Solving",
-                    "UI/UX Design"
-                ],
-                currentlyLearning: [
-                    "Advanced React Patterns",
-                    "System Design",
-                    "Cloud Architecture"
-                ],
-                funFact: "I debug with console.log()"
+                languages: ["Tamil", "English", "Japanese (JLPT N3)"],
+                certifications: ["ACP-620", "ACP-120", "ACA-900"],
+                core: ["Critical Thinking", "Time Management", "Agility"],
+                education: "B.E. CSE (CGPA 8.0)"
             }
         }
     },
@@ -100,151 +68,56 @@ while (true) {
     // Experience Section
     experience: [
         {
-            title: "Full Stack Developer",
-            company: "Personal Projects",
-            period: "2022 - Present",
-            description: "Building and maintaining various web applications using modern technologies. Focused on creating responsive, user-friendly interfaces and scalable backend systems."
+            title: "Software Developer Internship",
+            company: "Innoov (Japan)",
+            period: "Jan 2025 - Present",
+            description: "Developing automation systems and add-on apps for Jira, Confluence, and JSM.",
+            highlights: [
+                "Certified Jira Project Admin (ACP-620) & Jira Admin (ACP-120).",
+                "Gained exposure to cross-cultural agile development environments.",
+                "Built automation solutions to streamline enterprise workflows.",
+                "Collaborated with international teams to deliver robust software."
+            ],
+            technologies: ["Jira", "Confluence", "Automation", "Agile"]
         },
         {
-            title: "Open Source Contributor",
-            company: "GitHub Community",
-            period: "2021 - Present",
-            description: "Contributing to open-source projects, fixing bugs, adding features, and helping maintain documentation. Active in code reviews and community discussions."
+            title: "Founder & Lead",
+            company: "Fewinfos",
+            period: "Nov 2024 - Present",
+            description: "Leading open-source software development and managing client projects.",
+            highlights: [
+                "Focused on open source software development with 10+ active members.",
+                "Generated 10k+ monthly revenue through strategic client support.",
+                "Managed 2+ major clients for open source development support.",
+                " fostered a collaborative community of developers."
+            ],
+            technologies: ["Open Source", "Leadership", "Freelancing"]
         }
     ],
 
-    // Work Experience
-    work: [
-        {
-            title: "Full Stack Developer",
-            company: "Tech Solutions Inc.",
-            period: "Jan 2023 - Present",
-            type: "Full-time",
-            description: "Led development of scalable web applications and collaborated with cross-functional teams to deliver high-quality software solutions.",
-            highlights: [
-                "Developed and maintained multiple client-facing web applications using React and Node.js",
-                "Improved application performance by 40% through code optimization and caching strategies",
-                "Mentored junior developers and conducted code reviews",
-                "Implemented CI/CD pipelines reducing deployment time by 60%"
-            ],
-            technologies: ["React.js", "Node.js", "Express", "MongoDB", "AWS", "Docker"]
-        },
-        {
-            title: "Frontend Developer",
-            company: "Creative Agency",
-            period: "Jun 2022 - Dec 2022",
-            type: "Contract",
-            description: "Built responsive and interactive user interfaces for various client projects, focusing on user experience and accessibility.",
-            highlights: [
-                "Created pixel-perfect responsive designs for 10+ client websites",
-                "Implemented modern UI/UX best practices and accessibility standards (WCAG 2.1)",
-                "Collaborated with designers using Figma for seamless design-to-code workflow",
-                "Reduced page load times by 50% through performance optimization"
-            ],
-            technologies: ["HTML5", "CSS3", "JavaScript", "React", "Tailwind CSS", "Figma"]
-        },
-        {
-            title: "Software Developer Intern",
-            company: "StartUp Co.",
-            period: "Jan 2022 - May 2022",
-            type: "Internship",
-            description: "Contributed to the development of a real-time collaboration platform, gaining hands-on experience with modern web technologies.",
-            highlights: [
-                "Developed features for real-time collaborative editing using WebSockets",
-                "Fixed 50+ bugs and implemented unit tests achieving 85% code coverage",
-                "Participated in agile ceremonies and sprint planning",
-                "Documented APIs and created technical documentation"
-            ],
-            technologies: ["JavaScript", "Node.js", "Socket.io", "PostgreSQL", "Jest"]
-        },
-        {
-            title: "Freelance Developer",
-            company: "Self-Employed",
-            period: "2021 - 2022",
-            type: "Freelance",
-            description: "Provided web development services to small businesses and startups, delivering custom solutions tailored to client needs.",
-            highlights: [
-                "Built and deployed 15+ websites for various clients",
-                "Managed entire project lifecycle from requirements gathering to deployment",
-                "Provided ongoing maintenance and support",
-                "Achieved 100% client satisfaction rate"
-            ],
-            technologies: ["WordPress", "PHP", "JavaScript", "MySQL", "cPanel"]
-        }
-    ],
-
-    // Projects
+    // Projects Section
     projects: [
         {
-            title: "E-Commerce Platform",
-            type: "Web App",
-            icon: "💻",
+            title: "LayerLens",
+            type: "Open Source Package",
+            icon: "📦",
             featured: true,
-            description: "A full-featured e-commerce platform with user authentication, product management, shopping cart, payment integration, and admin dashboard. Built with modern technologies for optimal performance and scalability.",
-            technologies: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
+            description: "A Python package for explaining layers in ML models, helping developers understand model architecture better.",
+            technologies: ["Python", "Git", "Algorithmic Structuring", "ML"],
             links: {
-                demo: "#",
+                demo: "https://pypi.org/project/layerlens/",
                 github: "#"
             }
         },
         {
-            title: "Task Management App",
-            type: "Mobile",
-            icon: "📱",
-            featured: false,
-            description: "A collaborative task management application with real-time updates, team workspaces, drag-and-drop functionality, and deadline tracking. Designed for productivity and seamless team collaboration.",
-            technologies: ["React Native", "Firebase", "Socket.io", "Redux"],
-            links: {
-                demo: "#",
-                github: "#"
-            }
-        },
-        {
-            title: "Portfolio Builder",
-            type: "Web App",
-            icon: "🎨",
+            title: "Problem2project",
+            type: "Collaborative Platform",
+            icon: "🤝",
             featured: true,
-            description: "An intuitive drag-and-drop portfolio builder that allows users to create beautiful portfolio websites without coding. Features multiple templates, custom domains, and analytics integration.",
-            technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+            description: "A collaborative area where real-world problems are shared and discussed to find technical solutions.",
+            technologies: ["React", "Python", "HTML/CSS", "Render"],
             links: {
-                demo: "#",
-                github: "#"
-            }
-        },
-        {
-            title: "Authentication API",
-            type: "Backend",
-            icon: "🔐",
-            featured: false,
-            description: "A robust authentication and authorization API with JWT tokens, OAuth integration, two-factor authentication, and role-based access control. RESTful design with comprehensive documentation.",
-            technologies: ["Node.js", "Express", "PostgreSQL", "JWT", "OAuth"],
-            links: {
-                demo: "#",
-                github: "#",
-                label: "Documentation"
-            }
-        },
-        {
-            title: "Analytics Dashboard",
-            type: "Web App",
-            icon: "📊",
-            featured: false,
-            description: "A real-time analytics dashboard with interactive charts, data visualization, and custom reporting. Features export functionality, scheduled reports, and multi-user support with role permissions.",
-            technologies: ["React", "D3.js", "Python", "Flask", "MySQL"],
-            links: {
-                demo: "#",
-                github: "#"
-            }
-        },
-        {
-            title: "AI Chatbot",
-            type: "AI/ML",
-            icon: "🤖",
-            featured: false,
-            description: "An intelligent chatbot powered by natural language processing that provides customer support, answers queries, and learns from interactions. Integrates with popular messaging platforms.",
-            technologies: ["Python", "TensorFlow", "NLP", "FastAPI", "Docker"],
-            links: {
-                demo: "#",
+                demo: "https://problem2project.site",
                 github: "#"
             }
         }
@@ -252,25 +125,25 @@ while (true) {
 
     // Contact Information
     contact: {
-        title: "Get In Touch",
-        subtitle: "Have a project in mind or just want to chat? Feel free to reach out. I'm always open to discussing new opportunities and collaborations.",
+        title: "Connect",
+        subtitle: "Let's build something incredible together.",
         info: [
             {
                 icon: "📧",
                 title: "Email",
-                detail: "naveenraj@example.com",
-                link: "mailto:naveenraj@example.com"
+                detail: "naveenrajthiyagarajan6@gmail.com",
+                link: "mailto:naveenrajthiyagarajan6@gmail.com"
             },
             {
                 icon: "📱",
                 title: "Phone",
-                detail: "+1 (234) 567-890",
-                link: "tel:+1234567890"
+                detail: "+91 8122118540",
+                link: "tel:+918122118540"
             },
             {
-                icon: "📍",
+                icon: "🌍",
                 title: "Location",
-                detail: "Everywhere, Internet",
+                detail: "Karur, India",
                 link: null
             }
         ],
@@ -283,34 +156,17 @@ while (true) {
             {
                 name: "LinkedIn",
                 icon: "in",
-                link: "#"
-            },
-            {
-                name: "Twitter",
-                icon: "X",
-                link: "#"
-            },
-            {
-                name: "Dev.to",
-                icon: "D",
-                link: "#"
+                link: "#" // Add actual link if known
             }
         ],
         terminal: {
-            code: `// Quick response
-const responseTime = {
-  email: "24 hours",
-  message: "2-3 days",
-  availability: "open"
+            code: `// Contact status
+const contact = {
+  availability: "Open to opportunities",
+  preferred: ["Email", "LinkedIn"],
+  response: "Typically within 24h"
 };`
         }
-    },
-
-    // Images/Icons (can be extended with actual image paths)
-    images: {
-        logo: null, // Add logo path if available
-        avatar: null, // Add avatar path if available
-        projectImages: {} // Can add project-specific images
     }
 };
 
