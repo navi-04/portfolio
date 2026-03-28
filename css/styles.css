@@ -453,3 +453,12 @@ li {
   margin-bottom: var(--spacing-lg);
 }
 
+
+.contact-email {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-family: var(--font-heading);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
