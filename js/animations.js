@@ -22,3 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
 
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
