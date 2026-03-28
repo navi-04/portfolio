@@ -318,3 +318,10 @@ li {
   text-transform: uppercase;
 }
 
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-md);
+}
+
