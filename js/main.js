@@ -22,3 +22,5 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(renderCursor);
   };
 
+  requestAnimationFrame(renderCursor);
+
