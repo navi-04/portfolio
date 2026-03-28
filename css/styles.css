@@ -221,3 +221,13 @@ li {
   justify-content: center;
 }
 
+
+.loader-text {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 500;
+  display: flex;
+  gap: var(--spacing-sm);
+  overflow: hidden;
+}
+
