@@ -5,3 +5,12 @@
   .hero-title { font-size: clamp(3rem, 12vw, 8rem); }
 }
 
+
+@media (max-width: 768px) {
+  html { font-size: 12px; }
+  :root {
+    --spacing-xl: 4rem;
+    --spacing-lg: 2rem;
+  }
+}
+
