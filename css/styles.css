@@ -274,3 +274,18 @@ li {
   max-width: 600px;
 }
 
+
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: var(--spacing-xl);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
