@@ -14,3 +14,10 @@
   }
 }
 
+
+@media (max-width: 768px) {
+  .cursor-dot, .cursor-ring {
+    display: none;
+  }
+}
+
