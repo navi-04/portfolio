@@ -20,3 +20,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const initScrollReveals = () => {
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .line-inner');
 
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+
