@@ -476,3 +476,9 @@ li {
   transition: transform var(--transition-fast);
 }
 
+
+.contact-email:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
