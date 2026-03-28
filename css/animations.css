@@ -34,3 +34,9 @@
   transition: opacity 1s var(--transition-slow), transform 1.2s var(--transition-slow);
 }
 
+
+.reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
