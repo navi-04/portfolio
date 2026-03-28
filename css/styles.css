@@ -254,3 +254,9 @@ li {
   line-height: 0.9;
 }
 
+
+.line-wrap {
+  display: block;
+  overflow: hidden;
+}
+
