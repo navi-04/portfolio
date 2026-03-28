@@ -34,3 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => revealObserver.observe(el));
   };
 
+  /* Parallax Logic */
+  const parallaxImages = document.querySelectorAll('.parallax-img img');
+
