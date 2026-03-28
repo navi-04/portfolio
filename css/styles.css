@@ -544,3 +544,11 @@ li {
   border: 1px solid #333;
 }
 
+
+.contact-social-link {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: underline;
+}
+
