@@ -298,3 +298,12 @@ li {
   display: block;
 }
 
+
+/* Work Section */
+.section-work {
+  padding: var(--spacing-xl);
+  background-color: var(--surface-color);
+  position: relative;
+  z-index: 10;
+}
+
