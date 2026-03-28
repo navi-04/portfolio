@@ -532,3 +532,15 @@ li {
 .experience-meta { color: var(--accent); font-weight: bold; margin-bottom: 1rem; display: block; }
 .experience-desc { color: var(--text-secondary); margin-bottom: 1rem; }
 
+
+.experience-tech span, .skills-grid span {
+  display: inline-block;
+  padding: 5px 15px;
+  background: var(--surface-color);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #333;
+}
+
