@@ -260,3 +260,9 @@ li {
   overflow: hidden;
 }
 
+
+.line-inner {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
