@@ -31,3 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, observerOptions);
 
+    revealElements.forEach(el => revealObserver.observe(el));
+  };
+
