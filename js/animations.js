@@ -17,3 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loaderPercentage.textContent = progress + '%';
   }, 100);
 
+  const initScrollReveals = () => {
+    const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .line-inner');
+
