@@ -30,3 +30,9 @@
   }
 }
 
+
+@media (max-width: 768px) {
+  .bg-text { font-size: 20vw; }
+  .about-content { padding: 0 var(--spacing-md); }
+}
+
