@@ -78,3 +78,15 @@ li {
   border-radius: 4px;
 }
 
+
+/* Custom Cursor Setup */
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
