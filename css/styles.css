@@ -430,3 +430,15 @@ li {
   font-family: var(--font-heading);
 }
 
+
+/* Contact Section */
+.section-contact {
+  padding: var(--spacing-xl);
+  background-color: var(--accent);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
