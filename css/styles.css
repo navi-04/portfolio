@@ -527,3 +527,8 @@ li {
   background: var(--accent);
 }
 
+
+.experience-title { font-size: 1.5rem; font-family: var(--font-heading); }
+.experience-meta { color: var(--accent); font-weight: bold; margin-bottom: 1rem; display: block; }
+.experience-desc { color: var(--text-secondary); margin-bottom: 1rem; }
+
