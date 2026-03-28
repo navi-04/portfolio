@@ -105,3 +105,12 @@ li {
   transition: width 0.3s, height 0.3s, border-color 0.3s;
 }
 
+
+/* Canvas Layout */
+#canvas {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
