@@ -114,3 +114,18 @@ li {
   overflow: hidden;
 }
 
+
+/* Navigation */
+#main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-lg);
+  z-index: 100;
+}
+
