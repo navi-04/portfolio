@@ -24,3 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   requestAnimationFrame(renderCursor);
 
+  const interactables = document.querySelectorAll('a, button, .work-item');
+  interactables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorDot.style.transform = 'translate(-50%, -50%) scale(0.5)';
+      cursorRing.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      cursorRing.style.borderColor = 'var(--accent)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+      cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
+      cursorRing.style.borderColor = 'var(--text-secondary)';
+    });
+  });
+});
+
