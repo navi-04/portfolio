@@ -507,3 +507,11 @@ li {
   position: relative;
 }
 
+
+.experience-item {
+  border-left: 2px solid var(--text-secondary);
+  padding-left: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
