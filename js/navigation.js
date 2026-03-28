@@ -7,3 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isNavOpen = false;
 
+  navToggle.addEventListener('click', () => {
+    isNavOpen = !isNavOpen;
+    if (isNavOpen) {
+      navOverlay.classList.add('active');
+    } else {
+      navOverlay.classList.remove('active');
+    }
+  });
+
