@@ -493,3 +493,9 @@ li {
   background: var(--bg-color);
 }
 
+
+.footer-right {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
