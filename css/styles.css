@@ -515,3 +515,15 @@ li {
   position: relative;
 }
 
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
