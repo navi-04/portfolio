@@ -61,7 +61,7 @@
 
 
 /* Parallax Utility */
-.parallax-img img {
+.parallax-img {
   will-change: transform;
 }
 

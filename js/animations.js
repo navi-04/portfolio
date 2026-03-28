@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* Parallax Logic */
-  const parallaxImages = document.querySelectorAll('.parallax-img img');
+  const parallaxElements = document.querySelectorAll('.parallax-img');
 
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
-    parallaxImages.forEach(img => {
+    parallaxElements.forEach(el => {
       const speed = 0.15;
-      img.style.transform = `translateY(px)`;
+      el.style.transform = `translateY(${scrolled * speed}px)`;
     });
   });
 });
