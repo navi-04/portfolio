@@ -47,3 +47,9 @@
 .stagger-3 { transition-delay: 0.3s; }
 .stagger-4 { transition-delay: 0.4s; }
 
+
+/* Text Line Reveal */
+.line-wrap {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
