@@ -1,0 +1,7 @@
+
+/* Responsive Typography */
+@media (max-width: 1024px) {
+  html { font-size: 14px; }
+  .hero-title { font-size: clamp(3rem, 12vw, 8rem); }
+}
+
