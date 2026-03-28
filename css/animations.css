@@ -1,0 +1,6 @@
+
+/* Loader Animation */
+.loader-fade-out {
+  animation: fadeOut 1s var(--transition-slow) forwards;
+}
+
