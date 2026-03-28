@@ -307,3 +307,8 @@ li {
   z-index: 10;
 }
 
+
+.section-header {
+  margin-bottom: var(--spacing-xl);
+}
+
