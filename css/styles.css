@@ -190,3 +190,14 @@ li {
   text-align: center;
 }
 
+
+.nav-links li a {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  position: relative;
+  display: inline-block;
+}
+
