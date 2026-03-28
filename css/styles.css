@@ -266,3 +266,11 @@ li {
   transform: translateY(100%);
 }
 
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-md);
+  max-width: 600px;
+}
+
