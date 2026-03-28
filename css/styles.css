@@ -332,3 +332,14 @@ li {
   position: relative;
 }
 
+
+@media (min-width: 768px) {
+  .work-item:nth-child(odd) {
+    grid-column: 2 / 8;
+  }
+  .work-item:nth-child(even) {
+    grid-column: 6 / 12;
+    margin-top: var(--spacing-xl);
+  }
+}
+
