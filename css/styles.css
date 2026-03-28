@@ -231,3 +231,8 @@ li {
   overflow: hidden;
 }
 
+
+.loader-percentage {
+  color: var(--text-secondary);
+}
+
