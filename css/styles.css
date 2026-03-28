@@ -400,3 +400,17 @@ li {
   overflow: hidden;
 }
 
+
+.bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30vw;
+  color: #1a1a1a;
+  z-index: 1;
+  pointer-events: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
