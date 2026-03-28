@@ -5,3 +5,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const navLinks = document.querySelectorAll('.nav-links li a');
 
+  let isNavOpen = false;
+
