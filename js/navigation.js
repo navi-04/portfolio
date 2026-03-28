@@ -16,3 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      isNavOpen = false;
+      navOverlay.classList.remove('active');
+    });
+  });
+});
+
