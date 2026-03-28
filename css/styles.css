@@ -414,3 +414,12 @@ li {
   white-space: nowrap;
 }
 
+
+.about-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 var(--spacing-xl);
+  text-align: center;
+}
+
