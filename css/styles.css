@@ -8,3 +8,9 @@
   --nav-height: 80px;
 }
 
+
+:root {
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+}
+
