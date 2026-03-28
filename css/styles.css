@@ -247,3 +247,10 @@ li {
   position: relative;
 }
 
+
+.hero-title {
+  font-size: clamp(4rem, 10vw, 12rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
