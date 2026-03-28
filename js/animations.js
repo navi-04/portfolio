@@ -37,3 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Parallax Logic */
   const parallaxImages = document.querySelectorAll('.parallax-img img');
 
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    parallaxImages.forEach(img => {
+      const speed = 0.15;
+      img.style.transform = `translateY(px)`;
+    });
+  });
+});
+
