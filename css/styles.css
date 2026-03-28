@@ -388,3 +388,15 @@ li {
   letter-spacing: 1px;
 }
 
+
+/* About Section */
+.section-about {
+  padding: var(--spacing-xl) 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
