@@ -447,3 +447,9 @@ li {
   text-align: center;
 }
 
+
+.contact-title {
+  font-size: clamp(3rem, 8vw, 8rem);
+  margin-bottom: var(--spacing-lg);
+}
+
