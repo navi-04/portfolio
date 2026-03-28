@@ -21,3 +21,9 @@
   transition: opacity 1s var(--transition-slow), transform 1.2s var(--transition-slow);
 }
 
+
+.reveal-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
