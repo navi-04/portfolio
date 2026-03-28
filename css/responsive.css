@@ -21,3 +21,12 @@
   }
 }
 
+
+@media (max-width: 768px) {
+  .work-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+}
+
