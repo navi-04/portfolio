@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navToggle.setAttribute('aria-expanded', 'true');
     } else {
       navOverlay.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
     }
   });
 
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => {
       isNavOpen = false;
       navOverlay.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
     });
   });
 });
