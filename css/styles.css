@@ -289,3 +289,12 @@ li {
   gap: 1rem;
 }
 
+
+.scroll-indicator::after {
+  content: '';
+  width: 50px;
+  height: 1px;
+  background-color: var(--text-secondary);
+  display: block;
+}
+
