@@ -90,3 +90,18 @@ li {
   transform: translate(-50%, -50%);
 }
 
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--text-secondary);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+}
+
