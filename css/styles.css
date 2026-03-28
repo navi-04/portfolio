@@ -343,3 +343,12 @@ li {
   }
 }
 
+
+.work-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background-color: #222;
+  position: relative;
+}
+
