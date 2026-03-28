@@ -13,3 +13,11 @@
   }
 }
 
+
+/* Scroll Reveals */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1s var(--transition-slow), transform 1.2s var(--transition-slow);
+}
+
