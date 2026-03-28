@@ -36,3 +36,12 @@
   .about-content { padding: 0 var(--spacing-md); }
 }
 
+
+@media (max-width: 768px) {
+  .site-footer {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+}
+
