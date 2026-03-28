@@ -312,3 +312,9 @@ li {
   margin-bottom: var(--spacing-xl);
 }
 
+
+.section-header h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-transform: uppercase;
+}
+
