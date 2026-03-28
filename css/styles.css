@@ -182,3 +182,11 @@ li {
   pointer-events: all;
 }
 
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  text-align: center;
+}
+
