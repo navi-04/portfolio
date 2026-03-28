@@ -325,3 +325,10 @@ li {
   gap: var(--spacing-md);
 }
 
+
+.work-item {
+  grid-column: span 12;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
