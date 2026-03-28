@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isNavOpen = !isNavOpen;
     if (isNavOpen) {
       navOverlay.classList.add('active');
+      navToggle.setAttribute('aria-expanded', 'true');
     } else {
       navOverlay.classList.remove('active');
     }
