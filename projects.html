@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Naveenraj</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-section {
+            min-height: 100vh;
+            padding: 120px 50px 50px;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 48px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: var(--mint);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease both;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.3s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(3) { animation-delay: 0.5s; }
+        .project-card:nth-child(4) { animation-delay: 0.6s; }
+        .project-card:nth-child(5) { animation-delay: 0.7s; }
+        .project-card:nth-child(6) { animation-delay: 0.8s; }
+
+        .project-card:hover {
+            border-color: var(--mint);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(100, 255, 218, 0.03) 0px,
+                transparent 1px,
+                transparent 2px,
+                rgba(100, 255, 218, 0.03) 3px
+            );
+        }
+
+        .project-icon {
+            font-size: 48px;
+            color: var(--mint);
+            z-index: 1;
+        }
+
+        .project-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .project-type {
+            font-size: 11px;
+            color: var(--mint);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 8px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 3px;
+            border: 1px solid var(--mint);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .tech-badge {
+            color: var(--mint);
+            font-size: 11px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            padding: 4px 8px;
+            background: rgba(100, 255, 218, 0.05);
+            border-radius: 3px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 4px;
+        }
+
+        .project-link:hover {
+            color: var(--mint);
+            border-color: var(--mint);
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        .project-link::before {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover::before {
+            transform: translateX(3px);
+        }
+
+        .featured-banner {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--mint);
+            color: #000;
+            padding: 5px 40px;
+            font-size: 11px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(100, 255, 218, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .projects-section {
+                padding: 100px 30px 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="logo" style="text-decoration: none;" id="nav-logo">Naveenraj</a>
+        <ul class="nav-links" id="nav-links">
+        </ul>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="projects-container">
+            <h1 class="section-title">Projects</h1>
+            <p class="section-subtitle">Things I've built and created</p>
+            
+            <div class="projects-grid" id="projects-grid">
+            </div>
+        </div>
+    </section>
+
+    <script src="data.js"></script>
+    <script>
+        // Load data from data.js
+        function loadPageData() {
+            // Navigation
+            const navLogo = document.getElementById('nav-logo');
+            navLogo.textContent = portfolioData.personal.name;
+
+            const navLinks = document.getElementById('nav-links');
+            portfolioData.navigation.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.href;
+                a.textContent = item.name;
+                li.appendChild(a);
+                navLinks.appendChild(li);
+            });
+
+            // Projects
+            const projectsGrid = document.getElementById('projects-grid');
+            portfolioData.projects.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.style.animationDelay = `${0.3 + index * 0.1}s`;
+
+                const techBadges = project.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('');
+                const featuredBanner = project.featured ? '<span class="featured-banner">FEATURED</span>' : '';
+                
+                const linkLabel = project.links.label || 'Live Demo';
+                const firstLinkHtml = project.links.demo ? `<a href="${project.links.demo}" class="project-link">${linkLabel}</a>` : '';
+                const secondLinkHtml = project.links.github ? `<a href="${project.links.github}" class="project-link">GitHub</a>` : '';
+
+                projectCard.innerHTML = `
+                    <div class="project-image">
+                        ${featuredBanner}
+                        <div class="project-icon">${project.icon}</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">${project.title}</h3>
+                            <span class="project-type">${project.type}</span>
+                        </div>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tech">
+                            ${techBadges}
+                        </div>
+                        <div class="project-links">
+                            ${firstLinkHtml}
+                            ${secondLinkHtml}
+                        </div>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Load data when page loads
+        loadPageData();
+    </script>
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Custom cursor effect
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor-dot';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll('a, button');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

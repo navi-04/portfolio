@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveenraj | Digital Architect</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <nav data-aos="fade-down" data-aos-duration="1000">
+        <a href="#hero" class="logo" id="nav-logo">Naveenraj</a>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <!-- Populated by JS -->
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <p class="greeting" id="hero-greeting"></p>
+                <h1 id="hero-title"></h1>
+                <h2 id="hero-subtitle"></h2>
+                <p class="description" id="hero-description"></p>
+                <a href="#about" class="cta-button" id="hero-cta"></a>
+            </div>
+            
+            <div class="hero-visual" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="dots">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <span id="terminal-title" class="title"></span>
+                    </div>
+                    <div class="window-body">
+                        <pre><code id="terminal-code"></code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <span>Scroll to Explore</span>
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-heading" data-aos="fade-right"><span class="number">01.</span> <span id="about-title"></span></h2>
+            
+            <div class="about-grid">
+                <div class="about-text" data-aos="fade-up">
+                    <div id="about-paragraphs"></div>
+                    
+                    <h3 class="sub-heading">Technologies I master:</h3>
+                    <ul class="skills-list" id="skills-list"></ul>
+                </div>
+                
+                <div class="about-visual" data-aos="fade-left">
+                   <div class="profile-card-wrapper">
+                        <div class="profile-card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="code-block" id="about-terminal-code">
+                                        <!-- Populated via JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <h2 class="section-heading" data-aos="fade-right"><span class="number">02.</span> Experience</h2>
+            
+            <div class="experience-container" id="experience-list">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-heading" data-aos="fade-right"><span class="number">03.</span> Creations</h2>
+            
+            <div class="projects-grid" id="projects-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="contact-container" data-aos="zoom-in">
+                <p class="section-overline">What's Next?</p>
+                <h2 class="section-heading-center" id="contact-title"></h2>
+                <p class="contact-subtitle" id="contact-subtitle"></p>
+                
+                <div class="contact-links" id="contact-info">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div class="social-links" id="social-links">
+                    <!-- Populated by JS -->
+                </div>
+                
+                <a href="mailto:naveenrajthiyagarajan6@gmail.com" class="big-button">Say Hello</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Designed & Built by Naveenraj Thiyagarajan</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="data.js"></script>
+    <script>
+        // Init AOS
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Load Data
+        function loadData() {
+            // Nav
+            const navLinks = document.getElementById('nav-links');
+            portfolioData.navigation.forEach(item => {
+                navLinks.innerHTML += `<li><a href="${item.href}" class="nav-link"><span class="nav-number">/</span>${item.name}</a></li>`;
+            });
+
+            // Hero
+            document.getElementById('hero-greeting').textContent = portfolioData.hero.greeting;
+            document.getElementById('hero-title').textContent = portfolioData.hero.title;
+            document.getElementById('hero-subtitle').textContent = portfolioData.hero.subtitle;
+            document.getElementById('hero-description').textContent = portfolioData.hero.description;
+            document.getElementById('hero-cta').textContent = portfolioData.hero.cta.text;
+            document.getElementById('hero-cta').href = portfolioData.hero.cta.link;
+            
+            document.getElementById('terminal-title').textContent = portfolioData.hero.terminal.title;
+            
+            // Typewriter effect for terminal code
+            const codeLines = portfolioData.hero.terminal.code.split('\n');
+            const codeElement = document.getElementById('terminal-code');
+            let delay = 0;
+            
+            codeLines.forEach((line, index) => {
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.className = 'code-line';
+                    div.textContent = line;
+                    codeElement.appendChild(div);
+                }, delay);
+                delay += 500;
+            });
+
+            // About
+            document.getElementById('about-title').textContent = portfolioData.about.title;
+            const aboutParagraphs = document.getElementById('about-paragraphs');
+            portfolioData.about.paragraphs.forEach(p => {
+                aboutParagraphs.innerHTML += `<p>${p.replace(/\*\*(.*?)\*\*/g, '<span class="highlight">$1</span>')}</p>`;
+            });
+            
+            const skillsList = document.getElementById('skills-list');
+            portfolioData.about.skills.forEach(skill => {
+                skillsList.innerHTML += `<li>${skill}</li>`;
+            });
+
+            // About Terminal (JSON view)
+            const aboutTerminalCode = document.getElementById('about-terminal-code');
+            const jsonStr = JSON.stringify(portfolioData.about.terminal.data, null, 2);
+            aboutTerminalCode.innerHTML = `<pre>${jsonStr}</pre>`;
+
+
+            // Experience
+            const expList = document.getElementById('experience-list');
+            portfolioData.experience.forEach((exp, index) => {
+                const alignClass = index % 2 === 0 ? 'left' : 'right';
+                const highlights = exp.highlights.map(h => `<li>${h}</li>`).join('');
+                const techs = exp.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                
+                expList.innerHTML += `
+                    <div class="experience-card ${alignClass}" data-aos="fade-up">
+                        <div class="exp-header">
+                            <h3>${exp.title} <span class="company">@ ${exp.company}</span></h3>
+                            <span class="period">${exp.period}</span>
+                        </div>
+                        <p class="exp-desc">${exp.description}</p>
+                        <ul class="exp-highlights">${highlights}</ul>
+                        <div class="exp-tech">${techs}</div>
+                    </div>
+                `;
+            });
+
+            // Projects
+            const projGrid = document.getElementById('projects-grid');
+            portfolioData.projects.forEach(proj => {
+                const techs = proj.technologies.map(t => `<span>${t}</span>`).join(' ');
+                projGrid.innerHTML += `
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="project-top">
+                            <div class="folder-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            </div>
+                            <div class="project-links">
+                                <a href="${proj.links.github}" target="_blank" aria-label="GitHub Link"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                                <a href="${proj.links.demo}" target="_blank" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">${proj.title}</h3>
+                        <p class="project-desc">${proj.description}</p>
+                        <div class="project-tech">${techs}</div>
+                    </div>
+                `;
+            });
+
+            // Contact
+            document.getElementById('contact-title').textContent = portfolioData.contact.title;
+            document.getElementById('contact-subtitle').textContent = portfolioData.contact.subtitle;
+            
+            const socialLinks = document.getElementById('social-links');
+            portfolioData.contact.social.forEach(social => {
+                socialLinks.innerHTML += `<a href="${social.link}" class="social-link">${social.name}</a>`;
+            });
+        }
+
+        loadData();
+
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Simple lagging effect for outline
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Mobile Nav Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Sticky Nav
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+    </script>
+</body>
+</html>
