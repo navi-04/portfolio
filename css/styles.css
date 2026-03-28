@@ -366,3 +366,11 @@ li {
   transform: scale(1.05);
 }
 
+
+.work-info {
+  margin-top: var(--spacing-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
