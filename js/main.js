@@ -14,3 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     cursorDot.style.top = mouseY + 'px';
   });
 
+  const renderCursor = () => {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(renderCursor);
+  };
+
