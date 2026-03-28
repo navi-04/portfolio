@@ -150,3 +150,11 @@ li {
   z-index: 101;
 }
 
+
+.nav-toggle .line {
+  width: 30px;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: var(--transition-fast);
+}
+
