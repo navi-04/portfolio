@@ -1,0 +1,10 @@
+/* CSS Variables */
+:root {
+  --bg-color: #050505;
+  --surface-color: #111111;
+  --text-primary: #f4f4f4;
+  --text-secondary: #888888;
+  --accent: #ff416c;
+  --nav-height: 80px;
+}
+
