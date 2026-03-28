@@ -236,3 +236,14 @@ li {
   color: var(--text-secondary);
 }
 
+
+/* Hero Section */
+.section-hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--spacing-xl);
+  position: relative;
+}
+
