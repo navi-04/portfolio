@@ -201,3 +201,8 @@ li {
   display: inline-block;
 }
 
+
+.nav-links li a:hover {
+  color: var(--text-primary);
+}
+
