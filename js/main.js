@@ -66,18 +66,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroDescription = document.getElementById('hero-description');
   const heroCta = document.getElementById('hero-cta');
 
+  const heroData = portfolioData.hero || {};
+  const heroCtaData = heroData.cta || {};
+  const personalName = typeof portfolioData.personal?.name === 'string' ? portfolioData.personal.name.trim() : '';
+  const heroGreetingText = typeof heroData.greeting === 'string' ? heroData.greeting : 'Hello, I am';
+  const heroTitleText = personalName || (typeof heroData.title === 'string' ? heroData.title : 'Developer');
+  const heroSubtitleText = typeof heroData.subtitle === 'string' ? heroData.subtitle : '';
+  const heroDescriptionText = typeof heroData.description === 'string' ? heroData.description : '';
+  const heroFinalDescription = [heroSubtitleText, heroDescriptionText].filter(Boolean).join(' ');
+  const heroCtaText = typeof heroCtaData.text === 'string' ? heroCtaData.text : 'Explore';
+  const heroCtaHref = typeof heroCtaData.link === 'string' ? heroCtaData.link : '#about';
+
   if (heroGreeting) {
-    heroGreeting.textContent = portfolioData.hero.greeting;
+    heroGreeting.textContent = heroGreetingText;
   }
   if (heroTitle) {
-    heroTitle.innerHTML = `<span class="line-wrap"><span class="line-inner">${portfolioData.hero.title}</span></span>`;
+    heroTitle.innerHTML = `<span class="line-wrap"><span class="line-inner is-revealed">${heroTitleText}</span></span>`;
   }
   if (heroDescription) {
-    heroDescription.textContent = portfolioData.hero.description;
+    heroDescription.textContent = heroFinalDescription;
   }
   if (heroCta) {
-    heroCta.textContent = portfolioData.hero.cta.text;
-    heroCta.setAttribute('href', portfolioData.hero.cta.link);
+    heroCta.textContent = heroCtaText;
+    heroCta.setAttribute('href', heroCtaHref);
   }
 
   const aboutParagraphs = document.getElementById('about-paragraphs');
@@ -119,21 +130,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const projectsGrid = document.getElementById('projects-grid');
   if (projectsGrid) {
-    projectsGrid.innerHTML = portfolioData.projects
+    const projects = Array.isArray(portfolioData.projects) ? portfolioData.projects : [];
+
+    projectsGrid.innerHTML = projects
       .map((project) => {
-        const technologies = project.technologies.join(' • ');
+        const title = typeof project.title === 'string' ? project.title : 'Untitled Project';
+        const type = typeof project.type === 'string' ? project.type : 'Project';
+        const description = typeof project.description === 'string' ? project.description : 'Description coming soon.';
+        const technologies = Array.isArray(project.technologies)
+          ? project.technologies.filter(Boolean).join(', ')
+          : 'Tech details pending';
+
+        const demoLink = typeof project.links?.demo === 'string' && project.links.demo.trim() !== '#'
+          ? project.links.demo
+          : null;
+
+        const linkMarkup = demoLink
+          ? `<a class="project-link" href="${demoLink}" target="_blank" rel="noopener noreferrer">View Project</a>`
+          : '';
+
         return `
           <article class="work-item reveal-up">
-            <div class="work-image parallax-img project-icon-wrap" aria-hidden="true">
-              <span class="project-icon">${project.icon}</span>
-            </div>
-            <div class="work-info">
-              <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer">
-                <h3>${project.title} (${project.type})</h3>
-              </a>
-              <span>${technologies}</span>
-            </div>
-            <p class="work-description">${project.description}</p>
+            <h3 class="project-title">${title} <span>(${type})</span></h3>
+            <p class="work-description">${description}</p>
+            <p class="project-tech">${technologies}</p>
+            ${linkMarkup}
           </article>
         `;
       })
