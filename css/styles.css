@@ -361,3 +361,8 @@ li {
   transform-origin: center;
 }
 
+
+.work-item:hover .work-image img {
+  transform: scale(1.05);
+}
+
