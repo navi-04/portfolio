@@ -23,7 +23,7 @@
 
   <!-- Spatial Navigation -->
   <nav id="main-nav" aria-label="Main Navigation">
-    <div class="nav-brand">N.</div>
+    <div class="nav-brand" id="nav-brand-text">N.</div>
     <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
       <span class="line"></span>
       <span class="line"></span>
@@ -31,11 +31,8 @@
   </nav>
 
   <div class="nav-overlay">
-    <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <ul class="nav-links" id="dynamic-nav">
+      <!-- Injected by JS -->
     </ul>
   </div>
 
@@ -43,39 +40,61 @@
   <main id="canvas">
     <!-- Hero Section -->
     <section id="hero" class="section-hero">
-      <h1 class="hero-title">
-        <span class="line-wrap"><span class="line-inner">Creative</span></span>
-        <span class="line-wrap"><span class="line-inner">Director</span></span>
-        <span class="line-wrap"><span class="line-inner">&amp; Engineer</span></span>
+      <p id="hero-greeting" class="hero-subtitle" style="margin-bottom:0;"></p>
+      <h1 class="hero-title" id="hero-title-container">
+        <!-- Injected by JS -->
       </h1>
-      <p class="hero-subtitle">Crafting spatial digital experiences.</p>
-      <div class="scroll-indicator">Scroll to explore</div>
+      <p class="hero-subtitle" id="hero-description"></p>
+      <div class="scroll-indicator"><a id="hero-cta" href="#about">Scroll to explore</a></div>
     </section>
-      <!-- Work Section -->
-    <section id="work" class="section-work" aria-labelledby="work-heading">
-      <div class="section-header">
-        <h2 id="work-heading">Selected Work</h2>
-      </div>
-    </section>
-      <!-- About Section -->
+
+    <!-- About Section -->
     <section id="about" class="section-about" aria-label="About Me">
-      <h2 class="bg-text">ABOUT</h2>
+      <h2 class="bg-text" id="about-bg-text">STORY</h2>
       <div class="about-content">
-        <p class="reveal-text">I blend creative direction with engineering to build digital environments that feel alive.</p>
+        <div id="about-paragraphs" style="margin-bottom: 2rem;"></div>
+        <div class="skills-grid" id="about-skills" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;"></div>
       </div>
     </section>
-      <!-- Contact Section -->
+
+    <!-- Experience Section -->
+    <section id="experience" class="section-experience" aria-label="Experience">
+      <div class="section-header" style="text-align:center; margin-bottom: 4rem;">
+        <h2>Experience</h2>
+      </div>
+      <div class="experience-list" id="experience-container" style="max-width: 800px; margin: 0 auto; padding: 0 var(--spacing-xl);">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- Work Section (Projects) -->
+    <section id="projects" class="section-work" aria-labelledby="work-heading">
+      <div class="section-header">
+        <h2 id="work-heading">Creation</h2>
+      </div>
+      <div class="work-grid" id="projects-grid">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- Contact Section -->
     <section id="contact" class="section-contact" aria-label="Contact Information">
       <div class="contact-wrapper">
-        <h2 class="contact-title">Let's Talk</h2>
-        <a href="mailto:hello@example.com" class="contact-email">hello@domain.com</a>
+        <h2 class="contact-title" id="contact-title">Connect</h2>
+        <p id="contact-subtitle" style="margin-bottom:2rem; font-size:1.2rem;"></p>
+        <div id="contact-info-list" style="display:flex; flex-direction:column; gap:10px; margin-bottom: 2rem;"></div>
+        <div id="contact-social-list" style="display:flex; gap:20px; justify-content:center;"></div>
       </div>
+      <footer class="site-footer" style="position:absolute; bottom:0; width:100%; left:0; background:transparent; border-top:1px solid rgba(255,255,255,0.1);">
+        <div class="footer-left">© 2026. <span id="footer-name"></span>.</div>
+      </footer>
     </section>
   </main>
 
   <!-- Custom Cursor -->
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
+  <script src="js/data.js"></script>
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/navigation.js"></script>
