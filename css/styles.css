@@ -139,3 +139,14 @@ li {
   z-index: 101;
 }
 
+
+.nav-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 101;
+}
+
