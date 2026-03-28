@@ -59,3 +59,9 @@
   transition: transform 1.5s var(--transition-slow);
 }
 
+
+/* Parallax Utility */
+.parallax-img img {
+  will-change: transform;
+}
+
